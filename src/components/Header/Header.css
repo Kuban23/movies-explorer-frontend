@@ -53,15 +53,15 @@
    cursor: pointer;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 770px) {
    .header {
-      padding: 18px 30px;
+      padding: 18px 30px 38px 30px;
    }
 }
 
 @media (max-width: 400px) {
    .header {
-      padding: 18px 14px 18px 14px;
+      padding: 18px 14px 32px 14px;
    }
 
    .header__link-auth {
