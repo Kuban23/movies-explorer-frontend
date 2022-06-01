@@ -4,7 +4,7 @@
    justify-content: space-between;
    align-items: center;
    padding: 18px 70px 38px 70px;
-   border: 2px solid red;
+   /* border: 2px solid red; */
 }
 
 .header__logo {
@@ -30,7 +30,6 @@
    font-weight: 500;
    line-height: 16px;
    letter-spacing: 0px;
-   margin-right: 30px;
    transition: opacity 0.5s ease-in-out;
 }
 
@@ -50,6 +49,30 @@
    border-radius: 3px;
    background: #3DDC84;
    border: none;
-   /* padding: 8px 20px; */
+   margin-left: 30px;
    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+   .header {
+      padding: 18px 30px;
+   }
+}
+
+@media (max-width: 400px) {
+   .header {
+      padding: 18px 14px 18px 14px;
+   }
+
+   .header__link-auth {
+      font-size: 10px;
+      line-height: 16px;
+   }
+
+   .header__link-auth_type_in {
+      margin-left: 14px;
+      height: 26px;
+      width: 54px;
+   }
+
 }
