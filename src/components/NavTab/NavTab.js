@@ -3,7 +3,11 @@ import './NavTab.css'
 
 function NavTab(){
 	return ( 
-<div></div>
+<div className="navtab">
+<a className='navtab__link' href="#">О проекте</a>
+<a className='navtab__link' href="#">Технологии</a>
+<a className='navtab__link' href="#">Студент</a>
+</div>
 );
 }
 
