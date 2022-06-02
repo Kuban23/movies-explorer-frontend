@@ -52,7 +52,7 @@
 	align-items: center;
 	justify-content: center;
 	gap: 10px;
-	margin: 0px;	
+	margin: 0;	
 }
 
 .techs__skills-item {
@@ -89,6 +89,10 @@
 		padding-bottom: 83px;
 	}
 
+	.techs__skills {
+		padding: 0px;
+	}
+
 	.techs__skills-item {
 		width: 84px;
 		height: 57px;
@@ -98,7 +102,7 @@
 	}
 }
 
-@media (max-width: 400px) {
+@media (max-width: 515px) {
 	.techs {
 		padding: 70px 0px;
 	}

@@ -88,10 +88,11 @@
 }
 
 .about-project__week-time_type_frontend {
-	width: 912px;
+	max-width: 912px;
 	background: #303030;
 	color: #FFFFFF;
    margin: 0px;
+	width: 71vw;
 }
 
 .about-project__week-description {
@@ -105,7 +106,7 @@
 	/* margin-top: 14px; */
 }
 
-@media (max-width: 770px) {
+@media (max-width: 1027px) {
 	.about-project{
 		padding: 90px 50px;
 	}
@@ -126,12 +127,12 @@
 	}
 
 	.about-project__week-time_type_frontend {
-		width: 528px;
+		width: 68vw;
 		margin: 0px;
 	}
 }
 
-@media (max-width: 400px) {
+@media (max-width: 795px) {
 	.about-project{
 		padding: 70px 18px;
 	}
@@ -175,7 +176,7 @@
 	}
 
 	.about-project__week-time_type_frontend {
-		width: 184px;
+		width: 57vw;
 		margin-bottom: 10px;
 	}
 
