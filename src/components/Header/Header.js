@@ -13,6 +13,12 @@ function Header() {
             <button className="header__link-auth header__link-auth_type_in">Войти</button>
          </nav>
 
+         {/* <nav className="header__links">
+         <div className="header__link-films">Фильмы</div>
+         <div className="header__link-films">Сохранённые фильмы</div>
+
+         </nav> */}
+
 
 
       </header>

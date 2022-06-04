@@ -1,6 +1,7 @@
 
 import React from "react";
 import './SearchForm.css'
+import MoviesCardList from '../../components/MoviesCardList/MoviesCardList';
 
 function SearchForm() {
    return (
@@ -17,7 +18,10 @@ function SearchForm() {
             </label>
          </form>
 
+         <MoviesCardList/>
       </section>
+
+      
    );
 }
 
