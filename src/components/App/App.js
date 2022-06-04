@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import './App.css'
+import Profile from '../Profile/Profile'
 // import { Switch, Route } from 'react-router-dom'
 
 
@@ -14,6 +15,7 @@ function App() {
                <Header />
                <Main />
                <Movies />
+               <Profile/>
                {/* <Route exact path="/">
                   <Main />
                </Route>
