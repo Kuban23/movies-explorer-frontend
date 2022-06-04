@@ -10,6 +10,24 @@ function MoviesCardList() {
             <li>
                <MoviesCard/>
             </li>
+            <li>
+               <MoviesCard/>
+            </li>
+            <li>
+               <MoviesCard/>
+            </li>
+            <li>
+               <MoviesCard/>
+            </li>
+            <li>
+               <MoviesCard/>
+            </li>
+            <li>
+               <MoviesCard/>
+            </li>
+            <li>
+               <MoviesCard/>
+            </li>
          </ul>
          <button className="movies-card-list__more-button" type="button">Еще</button>
 
