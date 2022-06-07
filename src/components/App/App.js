@@ -4,7 +4,8 @@ import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import './App.css'
 import Profile from '../Profile/Profile'
-// import { Switch, Route } from 'react-router-dom'
+import Register from '..//Register/Register';
+//import { Switch, Route } from 'react-router-dom'
 
 
 function App() {
@@ -16,9 +17,10 @@ function App() {
                <Main />
                <Movies />
                <Profile/>
-               {/* <Route exact path="/">
-                  <Main />
-               </Route>
+               <Register/>
+               {/* <Route exact path="/"> */}
+                
+               {/* </Route>
                <Route path="/*">
                </Route> */}
             {/* </Switch> */}

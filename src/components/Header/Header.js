@@ -6,7 +6,7 @@ import logo from '../../images/logo.svg';
 function Header() {
    return (
       <header className="header">
-         <img className="header__logo" src={logo} />
+         <img className="header__logo" src={logo} alt="Логотип проекта" />
 
          <nav className="header__link-container">
             <div className="header__link-auth header__link-auth_type_up">Регистрация</div>
