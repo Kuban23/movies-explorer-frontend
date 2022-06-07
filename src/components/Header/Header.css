@@ -31,6 +31,7 @@
    line-height: 16px;
    letter-spacing: 0px;
    transition: opacity 0.5s ease-in-out;
+   text-decoration: none;
 }
 
 .header__link-auth:hover {
@@ -51,7 +52,56 @@
    border: none;
    margin-left: 30px;
    cursor: pointer;
+   text-align: center;
+   padding: 8px 20px;
+   box-sizing: border-box;
 }
+
+.header__links {
+   gap: 16px;
+   display: flex;
+   align-items: center;
+   /* justify-content:flex-start; */
+   
+}
+
+.header__link-films {
+   font-family: 'Inter';
+   font-style: normal;
+   font-weight: 500;
+   font-size: 13px;
+   line-height: 18px;
+   color: #FFFFFF;
+   text-decoration: none;   
+}
+
+.header__profile-link {
+   margin-left: 746px;
+}
+
+.header__profile-link {
+   transition: opacity 0.5s ease-in-out;
+}
+
+.header__profile-link:hover {
+   opacity: 0.8;
+}
+
+.header__menu-button {
+   display: none;
+   background-image: url('../../images/Burger_menu.svg');
+   background-repeat: no-repeat;
+   background-color: transparent;
+   width: 44px;
+   height: 44px;
+   border: none;
+   transition: opacity 0.5s ease-in-out;
+}
+
+.header__menu-button:hover {
+   opacity: 0.8;
+}
+
 
 @media (max-width: 770px) {
    .header {
