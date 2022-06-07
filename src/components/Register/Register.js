@@ -10,7 +10,7 @@ function Register(){
 	<div className="register__container">
 		<img className="register__logo" src={logo} alt="Логотип проекта" />
 		<h1 className="register__title">Добро пожаловать!</h1>
-		<form className="register__form" name="register">
+		<form className="register__form" name="register" noValidate>
 			<ul className="register__form-input-list">
 				<li className="register__form-input-list-item">
 				<label className="register__form-input-label">Имя</label>
@@ -30,7 +30,6 @@ function Register(){
 			</ul>
 			<button className="register__button" type="submit" aria-label='Кнопка отправить'>Зарегистрироваться</button>
 			<div className="register__form-button-container">
-				{/* <button className="register__button" type="submit" aria-label='Кнопка отправить'>Зарегистрироваться</button> */}
 				<p className="register__question">Уже зарегистрированы?</p>
 				<Link className="register__form-link">Войти</Link>  
 			</div>
