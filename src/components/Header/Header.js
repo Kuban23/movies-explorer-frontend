@@ -10,7 +10,7 @@ function Header() {
          
          <Link className="header__logo" alt="Логотип проекта" to="/"/>
 
-         {/* <nav className="header__links">
+         <nav className="header__links">
          <Link className="header__link-films" to="/movies">Фильмы</Link>
          <Link className="header__link-films" to="/saved-movies">Сохранённые фильмы</Link>
          </nav>
@@ -20,12 +20,12 @@ function Header() {
          <img className='header__profile-link-icon'src={icon} alt='Иконка профиля'/>
          </Link>
          <button className="header__menu-button" type="button"></button>
-         </> */}
+         </>
          
-         <nav className="header__link-container">
+         {/* <nav className="header__link-container">
             <Link className="header__link-auth header__link-auth_type_up" to="/signup">Регистрация</Link>
             <Link className="header__link-auth header__link-auth_type_in" to="/signin">Войти</Link>
-         </nav>
+         </nav> */}
          
         
       </header>

@@ -5,7 +5,7 @@ import aboutMePhoto from '../../images/aboutme.jpg';
 
 function AboutMe(){
 	return ( 
-<section className="about-me">
+<section className="about-me" id ="student">
 	<h2 className="about-me__title">Студент</h2>
 	<div className="about-me__container">
 		<div className="about-me__info-container">
@@ -26,7 +26,7 @@ function AboutMe(){
 			<a className="about-me__info-social-link" href="https://github.com/Kuban23">Github</a>
 			</li>		
 			<li>
-			<a className="about-me__info-social-link" href="@EsinAndrew">Telegram</a>
+			<a className="about-me__info-social-link" href="https://telegram.me/@EsinAndrew">Telegram</a>
 			</li>
 
 	</ul>

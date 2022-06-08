@@ -1,12 +1,15 @@
 
 import React from "react";
 import './Profile.css'
+import Header from '../Header/Header';
 
 function Profile() {
    return (
+      <>
+      <Header/>
       <section className="profile">
          <form className="profile__form" name="profile__form" noValidate>
-            <h1 className="profile__form-title">Привет, Виталий!</h1>
+            <h1 className="profile__form-title">Привет, Андрей!</h1>
             <ul className="profile__form-input-list">
                <li className="profile__form-input-item">
                   <label className="profile__form-input-label">Имя</label>
@@ -25,6 +28,7 @@ function Profile() {
          </form>
 
       </section>
+      </>
    );
 }
 

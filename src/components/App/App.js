@@ -11,6 +11,7 @@ import { Switch, Route } from 'react-router-dom'
 import SavedMovies from '../SavedMovies/SavedMovies'
 import Register from '../Register/Register'
 import Login from '../Login/Login';
+import Profile from '../Profile/Profile'
 
 function App() {
 
@@ -46,6 +47,10 @@ function App() {
 
                <Route exact path="/signin">
               <Login  />
+               </Route>
+
+               <Route exact path="/profile">
+              <Profile  />
                </Route>
               
             </Switch>
