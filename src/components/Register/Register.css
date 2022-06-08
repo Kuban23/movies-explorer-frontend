@@ -6,7 +6,7 @@
 	padding-top: 70px;
 	padding-bottom: 70px;
 	box-sizing: border-box;
-	justify-content: center;	
+	justify-content: center;		
 }
 
 .register__container { 
@@ -23,7 +23,7 @@
 	height: 38px;
 	margin-bottom: 40px;
 	align-self: flex-start;
-	
+	background: url('../../images/logo.svg');	
 }
 
 .register__title {

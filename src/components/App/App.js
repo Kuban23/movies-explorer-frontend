@@ -8,8 +8,9 @@ import './App.css'
 // import Login from '../Login/Login';
 // import PageNotFound from '../PageNotFound/PageNotFound';
 import { Switch, Route } from 'react-router-dom'
-
-
+import SavedMovies from '../SavedMovies/SavedMovies'
+import Register from '../Register/Register'
+import Login from '../Login/Login';
 
 function App() {
 
@@ -35,8 +36,17 @@ function App() {
               <Movies  />
                </Route>
 
+               <Route exact path="/saved-movies">
+              <SavedMovies  />
+               </Route>
                
-                
+               <Route exact path="/signup">
+              <Register  />
+               </Route>
+
+               <Route exact path="/signin">
+              <Login  />
+               </Route>
               
             </Switch>
          </div>

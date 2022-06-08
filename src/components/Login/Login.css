@@ -23,6 +23,7 @@
 	height: 38px;
 	margin-bottom: 40px;
 	align-self: flex-start;
+	background: url('../../images/logo.svg');
 }
 
 .login__title {

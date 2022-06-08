@@ -1,14 +1,16 @@
 
 import React from "react";
 import './Login.css'
-import logo from '../../images/logo.svg'
+//import logo from '../../images/logo.svg'
 import { Link } from 'react-router-dom'
 
 function Login(){
 	return ( 
 <section className="login">
 <div className="login-container">
-<img className="login__logo" src={logo} alt="Логотип проекта" />
+
+<Link className="login__logo" to="/" />
+
 <h1 className="login__title">Рады видеть!</h1>
 <form className="login__form" noValidate>
 <ul className="login__form-input-list">
@@ -25,7 +27,7 @@ function Login(){
 <button className="login__button" type="submit" aria-label='Кнопка отправить'>Войти</button>
 			<div className="login__form-button-container">
 				<p className="login__question">Ещё не зарегистрированы?</p>
-				<Link className="login__form-link">Регистрация</Link>  
+				<Link className="login__form-link" to="/signup">Регистрация</Link>  
 			</div>
 </form>
 </div>
