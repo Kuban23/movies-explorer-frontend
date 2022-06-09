@@ -17,13 +17,21 @@
 
 .header__logo:hover {
    opacity: 0.8;
- }
+}
 
- .header__links {
+.header__container_type_left {
+   width: 1058px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+
+.header__links {
    gap: 16px;
    display: flex;
    transition: opacity 0.5s ease-in-out;
-   
+
 }
 
 .header__links:hover {
@@ -34,7 +42,7 @@
    display: flex;
    align-items: center;
    justify-content: center;
-   
+
 }
 
 .header__link-auth {
@@ -77,7 +85,7 @@
    font-size: 13px;
    line-height: 18px;
    color: #FFFFFF;
-   text-decoration: none;   
+   text-decoration: none;
 }
 
 
@@ -117,7 +125,7 @@
    right: 0;
    top: 0;
    bottom: 0;
-   
+
 }
 
 .header__link-sidebar-close-btn {
@@ -172,6 +180,13 @@
    margin-bottom: 90px;
 }
 
+
+.header__link_type_sidebar {
+   text-align: center;
+   font-size: 18px;
+   line-height: 22px
+}
+
 .header__link_type_sidebar_active {
    /* text-decoration: underline; */
    border-bottom: 2px solid #FFFFFF;
@@ -193,6 +208,10 @@
 
    .header__menu-button {
       display: block;
+   }
+
+   .header__profile-link_type_sidebar {
+      display: flex;
    }
 }
 
@@ -221,7 +240,7 @@
       width: 100%;
    }
 
-   .header__link-sidebar-container-item:first-child  {
+   .header__link-sidebar-container-item:first-child {
       margin-top: 144px;
       gap: 24px;
    }
