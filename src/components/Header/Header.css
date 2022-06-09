@@ -19,17 +19,19 @@
    opacity: 0.8;
 }
 
-.header__container_type_left {
+/* .header__container_type_left {
    width: 1058px;
    display: flex;
    align-items: center;
    justify-content: space-between;
-}
+} */
 
 
 .header__links {
    gap: 16px;
    display: flex;
+   /* align-items: center;
+   justify-content: center; */
    transition: opacity 0.5s ease-in-out;
 
 }
@@ -105,6 +107,7 @@
    width: 44px;
    height: 44px;
    border: none;
+   cursor: pointer;
    transition: opacity 0.5s ease-in-out;
 }
 
@@ -113,8 +116,7 @@
 }
 
 .header__link-sidebar {
-   /* display: none; */
-
+   display: none;
 }
 
 .header__link-sidebar_active {
@@ -141,6 +143,7 @@
    border: none;
    padding: 0px;
    z-index: 2;
+   cursor: pointer;
    transition: opacity 0.5s ease-in-out;
 }
 
@@ -188,6 +191,11 @@
 }
 
 .header__link_type_sidebar_active {
+   /* text-decoration: underline; */
+   border-bottom: 2px solid #FFFFFF;
+}
+
+.header__link-films_type_header_active {
    /* text-decoration: underline; */
    border-bottom: 2px solid #FFFFFF;
 }
