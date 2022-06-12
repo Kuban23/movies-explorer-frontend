@@ -16,16 +16,14 @@ import Profile from '../Profile/Profile'
 function App() {
 
 
- // Состояние авторизации пользователя(вошел в систему или нет)
- const [loggedIn, setloggedIn] = React.useState(true); //false не залогинился, true залогинился
-
- const [savedMovies, setSavedMovies] = React.useState(3)
+   // Состояние авторизации пользователя(вошел в систему или нет)
+   const [loggedIn, setloggedIn] = React.useState(true); //false не залогинился, true залогинился
 
    return (
       <div className="App">
          <div className="page">
             <Switch>
-               
+
                {/* <Main /> */}
                {/* <Movies />
                <Profile/>
@@ -34,30 +32,30 @@ function App() {
                <PageNotFound/> */}
 
                <Route exact path="/">
-              <Main loggedIn={loggedIn}/>
-              
+                  <Main loggedIn={loggedIn} />
+
                </Route>
 
                <Route exact path="/movies">
-              <Movies loggedIn={loggedIn} />
+                  <Movies loggedIn={loggedIn} />
                </Route>
 
-              <Route exact path="/saved-movies">
-              <SavedMovies  loggedIn={loggedIn} savedMovies={savedMovies}/>
-              </Route>
-               
+               <Route exact path="/saved-movies">
+                  <SavedMovies loggedIn={loggedIn} />
+               </Route>
+
                <Route exact path="/signup">
-              <Register  />
-              </Route>
+                  <Register />
+               </Route>
 
                <Route exact path="/signin">
-              <Login  />
-              </Route>
+                  <Login />
+               </Route>
 
                <Route exact path="/profile">
-              <Profile />
-              </Route>
-              
+                  <Profile />
+               </Route>
+
             </Switch>
          </div>
       </div>

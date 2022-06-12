@@ -237,6 +237,7 @@
       margin-left: 14px;
       height: 26px;
       width: 54px;
+      padding: 5px 12px;
    }
 
    .header__link-sidebar-close-btn {
@@ -255,5 +256,11 @@
 
    .header__profile-link-icon_type_sidebar:last-child {
       margin-bottom: 46px;
+   }
+
+   .header__menu-button {
+      width: 40px;
+      height: 43px;
+      background-image: url('../../images/Burger_menu_320.svg');
    }
 }

@@ -1,6 +1,6 @@
 .search-form {
    width: 100%;
-   padding: 70px 70px 48px 70px;
+   padding: 50px 70px 48px 70px;
    box-sizing: border-box;
 }
 
@@ -95,11 +95,12 @@
    font-size: 13px;
    line-height: 18px;
    color: #FFFFFF;
+   margin: 0px;
 }
 
 @media (max-width: 770px) {
    .search-form {
-      padding: 80px 30px 61px 30px;
+      padding: 50px 30px 61px 30px;
    }
 
    .search-form__checkbox-container {
@@ -118,7 +119,7 @@
 
 @media (max-width: 489px) {
    .search-form {
-      padding: 80px 14px 51px 14px;
+      padding: 60px 14px 51px 14px;
    }
 
    .search-form__input {
