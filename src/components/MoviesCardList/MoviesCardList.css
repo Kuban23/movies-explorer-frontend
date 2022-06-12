@@ -17,7 +17,7 @@
    flex-direction: column;
    /* justify-content: center;
    align-items: center; */
-   gap: 40px;
+   /* gap: 40px; */
 
 }
 
@@ -34,7 +34,7 @@
    text-align: center;
    color: #FFFFFF;
    background: #202020;
-   margin-top: 50px;
+   margin-top: 10px;
    margin-bottom: 80px;
    border: 1px solid #424242;
    border-radius: 6px;

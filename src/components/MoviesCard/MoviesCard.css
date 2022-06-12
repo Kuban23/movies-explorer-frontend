@@ -8,6 +8,7 @@
    align-items: center;
    box-sizing: border-box;
    padding: 6px 6px 6px 22px;
+   margin-bottom: 40px;
 }
 
 .movies-card__container {

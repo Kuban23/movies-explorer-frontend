@@ -3,12 +3,14 @@ import './Movies.css'
 import SearchForm from '../../components/SearchForm/SearchForm';
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
+import MoviesCardList from '../../components/MoviesCardList/MoviesCardList';
 
-function Movies(){
+function Movies(props){
 	return ( 
 <div>
-   <Header />
+   <Header loggedIn={props.loggedIn}/>
 	<SearchForm/>
+   <MoviesCardList/>
 	<Footer />
 </div>
 );

@@ -4,12 +4,16 @@ import './SavedMovies.css'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import SearchForm from '../SearchForm/SearchForm';
+import MoviesCard from '../MoviesCard/MoviesCard'
 
-function SavedMovies(){
+function SavedMovies(props){
 	return ( 
 	<div>
-	<Header/>
-	<SearchForm/>	
+	<Header loggedIn={props.loggedIn}/>
+	<SearchForm />	
+   <MoviesCard/>
+   <MoviesCard/>
+   <MoviesCard/>
 	<Footer/>
 
 	</div>

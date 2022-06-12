@@ -15,8 +15,11 @@ import Profile from '../Profile/Profile'
 
 function App() {
 
-// Состояние отображение станицы "Фильмы"
 
+ // Состояние авторизации пользователя(вошел в систему или нет)
+ const [loggedIn, setloggedIn] = React.useState(true); //false не залогинился, true залогинился
+
+ const [savedMovies, setSavedMovies] = React.useState(3)
 
    return (
       <div className="App">
@@ -29,29 +32,31 @@ function App() {
                <Register/>
                <Login/>
                <PageNotFound/> */}
+
                <Route exact path="/">
-              <Main />
+              <Main loggedIn={loggedIn}/>
+              
                </Route>
 
                <Route exact path="/movies">
-              <Movies  />
+              <Movies loggedIn={loggedIn} />
                </Route>
 
-               <Route exact path="/saved-movies">
-              <SavedMovies  />
-               </Route>
+              <Route exact path="/saved-movies">
+              <SavedMovies  loggedIn={loggedIn} savedMovies={savedMovies}/>
+              </Route>
                
                <Route exact path="/signup">
               <Register  />
-               </Route>
+              </Route>
 
                <Route exact path="/signin">
               <Login  />
-               </Route>
+              </Route>
 
                <Route exact path="/profile">
-              <Profile  />
-               </Route>
+              <Profile />
+              </Route>
               
             </Switch>
          </div>
