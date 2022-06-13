@@ -15,7 +15,7 @@ function MoviesCard() {
          <img className="movies-card__picture-film" alt="картинка фильма" src={word_33} />
       </div>
 
-      
+
    );
 }
 

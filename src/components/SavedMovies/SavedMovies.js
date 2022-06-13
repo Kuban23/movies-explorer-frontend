@@ -8,15 +8,17 @@ import MoviesCard from '../MoviesCard/MoviesCard'
 
 function SavedMovies(props){
 	return ( 
-	<div>
+	<section className="saved-movies">
 	<Header loggedIn={props.loggedIn}/>
 	<SearchForm />	
+   <div className="saved-movies__list">
    <MoviesCard/>
    <MoviesCard/>
    <MoviesCard/>
+   </div>
 	<Footer/>
 
-	</div>
+	</section>
 );
 }
 

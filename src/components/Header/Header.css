@@ -134,8 +134,8 @@
    position: absolute;
    width: 22px;
    height: 22px;
-   top: 29px;
-   right: 29px;
+   top: 27px;
+   right: 27px;
    background-image: url('../../images/Close_btn.svg');
    background-repeat: no-repeat;
    background-size: cover;
@@ -197,7 +197,7 @@
 
 .header__link-films_type_header_active {
    /* text-decoration: underline; */
-   border-bottom: 2px solid #FFFFFF;
+   border-bottom: 2px solid #FFFFFF;   
 }
 
 
@@ -241,8 +241,8 @@
    }
 
    .header__link-sidebar-close-btn {
-      top: 13.40px;
-      right: 13.40px;
+      top: 17.40px;
+      right: 17.40px;
    }
 
    .header__link-sidebar-container {
@@ -255,7 +255,7 @@
    }
 
    .header__profile-link-icon_type_sidebar:last-child {
-      margin-bottom: 46px;
+      margin-bottom: 106px;
    }
 
    .header__menu-button {

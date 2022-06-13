@@ -3,10 +3,10 @@ import React from "react";
 import './Profile.css'
 import Header from '../Header/Header';
 
-function Profile() {
+function Profile(props) {
    return (
       <>
-      <Header/>
+      <Header loggedIn={props.loggedIn}/>
       <section className="profile">
          <form className="profile__form" name="profile__form" noValidate>
             <h1 className="profile__form-title">Привет, Андрей!</h1>

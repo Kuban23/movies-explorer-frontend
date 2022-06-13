@@ -53,7 +53,7 @@ function App() {
                </Route>
 
                <Route exact path="/profile">
-                  <Profile />
+                  <Profile loggedIn={loggedIn} />
                </Route>
 
             </Switch>

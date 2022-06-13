@@ -81,7 +81,7 @@
       flex-direction: column-reverse;
       height: 232px;
       padding: 0px;
-      
+      margin-bottom: 0px;
    }
 
    .movies-card__title {
@@ -91,7 +91,7 @@
 
    .movies-card__lenght {
       padding-top: 8px;
-      padding-bottom: 14px;
+      padding-bottom: 0px;
    }
 
    .movies-card__container {
