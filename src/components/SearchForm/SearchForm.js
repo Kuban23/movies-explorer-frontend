@@ -5,7 +5,7 @@ import './SearchForm.css'
 function SearchForm() {
    return (
       <section className="search-form">
-         <form className="search-form__form" noValidate name="search">
+         <form className="search-form__form" name="search">
             <div className="search-form__inputs">
                <input className="search-form__input" name="search" placeholder="Фильм" type="text" required maxLength="40"/>
                <button className="search-form__btn-submit" aria-label="Кнопка поиск" type="submit" />

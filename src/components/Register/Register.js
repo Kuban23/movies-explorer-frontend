@@ -12,7 +12,7 @@ function Register(){
 		<Link className="register__logo" to="/" />
 		
 		<h1 className="register__title">Добро пожаловать!</h1>
-		<form className="register__form" name="register" noValidate>
+		<form className="register__form" name="register">
 			<ul className="register__form-input-list">
 				<li className="register__form-input-list-item">
 				<label className="register__form-input-label">Имя</label>

@@ -8,7 +8,7 @@ function Profile(props) {
       <>
       <Header loggedIn={props.loggedIn}/>
       <section className="profile">
-         <form className="profile__form" name="profile__form" noValidate>
+         <form className="profile__form" name="profile__form">
             <h1 className="profile__form-title">Привет, Андрей!</h1>
             <ul className="profile__form-input-list">
                <li className="profile__form-input-item">

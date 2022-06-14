@@ -19,21 +19,13 @@
    opacity: 0.8;
 }
 
-/* .header__container_type_left {
-   width: 1058px;
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-} */
-
-
 .header__links {
    gap: 16px;
    display: flex;
    /* align-items: center;
    justify-content: center; */
    transition: opacity 0.5s ease-in-out;
-
+   
 }
 
 .header__links:hover {
@@ -87,7 +79,7 @@
    font-size: 13px;
    line-height: 18px;
    color: #FFFFFF;
-   text-decoration: none;
+   text-decoration: none;   
 }
 
 

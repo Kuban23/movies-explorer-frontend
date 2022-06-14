@@ -12,7 +12,7 @@ function Login(){
 <Link className="login__logo" to="/" />
 
 <h1 className="login__title">Рады видеть!</h1>
-<form className="login__form" noValidate>
+<form className="login__form">
 <ul className="login__form-input-list">
 	<li className="login__form-input-list-item">
 	<label className="login__form-input-label">E-mail</label>

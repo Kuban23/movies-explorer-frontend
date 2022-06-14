@@ -20,6 +20,14 @@
 	margin: 0px;
 }
 
+.techs__container {
+	width: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
 .techs__subtitle {
 	font-family: 'Inter';
 	font-style: normal;
@@ -53,7 +61,8 @@
 	align-items: center;
 	justify-content: center;
 	gap: 10px;
-	margin: 0;	
+	margin: 0px;
+   padding-left: 0px;	
 }
 
 .techs__skills-item {
@@ -76,7 +85,7 @@
 
 @media (max-width: 770px) {
 	.techs {
-		padding: 90px 50px;
+		padding: 90px 50px;		
 	}
 
 	.techs__subtitle {
@@ -103,9 +112,26 @@
 	}
 }
 
+@media (max-width: 659px) {
+	/* .techs {
+		padding: 70px 0px;
+		background: #202020;
+	} */
+
+	.techs__skills {
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		align-items: center;
+		width: 450px;
+		padding: 0px;
+		margin: 0 auto;
+	}
+}
+
 @media (max-width: 515px) {
 	.techs {
 		padding: 70px 0px;
+		background: #202020;
 	}
 
 	.techs__title {

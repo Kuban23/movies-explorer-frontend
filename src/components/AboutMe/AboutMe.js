@@ -20,13 +20,13 @@ function AboutMe(){
 	</p>
 	<ul className="about-me__social-links">
 			<li>
-			<a className="about-me__info-social-link" href="http://www.linkedin.com/in/андрей-есин">Linkedin</a>
+			<a className="about-me__info-social-link" href="http://www.linkedin.com/in/андрей-есин" target="blank">Linkedin</a>
 			</li>	
 			<li>
-			<a className="about-me__info-social-link" href="https://github.com/Kuban23">Github</a>
+			<a className="about-me__info-social-link" href="https://github.com/Kuban23" target="blank">Github</a>
 			</li>		
 			<li>
-			<a className="about-me__info-social-link" href="https://telegram.me/@EsinAndrew">Telegram</a>
+			<a className="about-me__info-social-link" href="https://telegram.me/@EsinAndrew" target="blank">Telegram</a>
 			</li>
 
 	</ul>

@@ -6,7 +6,7 @@ import './App.css'
 // import Profile from '../Profile/Profile'
 // import Register from '../Register/Register';
 // import Login from '../Login/Login';
-// import PageNotFound from '../PageNotFound/PageNotFound';
+import PageNotFound from '../PageNotFound/PageNotFound';
 import { Switch, Route } from 'react-router-dom'
 import SavedMovies from '../SavedMovies/SavedMovies'
 import Register from '../Register/Register'
@@ -17,23 +17,15 @@ function App() {
 
 
    // Состояние авторизации пользователя(вошел в систему или нет)
-   const [loggedIn, setloggedIn] = React.useState(true); //false не залогинился, true залогинился
+   const [loggedIn, setloggedIn] = React.useState(false); //false не залогинился, true залогинился
 
    return (
       <div className="App">
          <div className="page">
             <Switch>
 
-               {/* <Main /> */}
-               {/* <Movies />
-               <Profile/>
-               <Register/>
-               <Login/>
-               <PageNotFound/> */}
-
                <Route exact path="/">
                   <Main loggedIn={loggedIn} />
-
                </Route>
 
                <Route exact path="/movies">
@@ -55,6 +47,10 @@ function App() {
                <Route exact path="/profile">
                   <Profile loggedIn={loggedIn} />
                </Route>
+
+               <Route path="/*">
+              <PageNotFound />
+            </Route>
 
             </Switch>
          </div>
