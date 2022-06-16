@@ -1,0 +1,7 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/Inter/inter.css);
+
+#root {
+   background-color: #202020;
+   width: 100%;
+ }
