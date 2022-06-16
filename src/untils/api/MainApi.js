@@ -1,5 +1,6 @@
 const baseUrl = 'https://api.backend.diplom.nomoreparties.sbs';
 
+// Метод проверки ответа
 const checkResponse = (res) => {
    if (!res.ok) {
       return Promise.reject(`Error: ${res.status}`); // если ошибка, отклоняем промис
