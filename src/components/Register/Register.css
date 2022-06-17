@@ -97,6 +97,10 @@
    outline: 1px solid #424242;
 }
 
+.register__form-input_type_error {
+   color: #EE3465;
+}
+
 .register__form-input-error {
    font-family: 'Inter';
    font-style: normal;
