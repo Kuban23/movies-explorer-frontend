@@ -61,7 +61,7 @@ export const getMovies = () => fetch(`${baseUrl}/movies`, {
 })
    .then(checkResponse)
 
-// Удаление фильма
+// Удаление сохраненного фильма
 export const deleteSavedMovies = (id) => fetch(`${baseUrl}/movies/${id}`, {
    method: 'DELETE',
    headers: {
