@@ -12,7 +12,7 @@ import SavedMovies from '../SavedMovies/SavedMovies'
 import Register from '../Register/Register'
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile'
-import {register, login, saveMovies, getMovies, editProfile, getUserInformation, deleteSavedMovies} from '../../untils/api/MainApi';
+import { register, login, saveMovies, getMovies, editProfile, getUserInformation, deleteSavedMovies } from '../../untils/api/MainApi';
 
 
 function App() {
@@ -23,44 +23,57 @@ function App() {
    // Состояние ошибок при регистрации
    const [registrationError, setRegistrationError] = React.useState('')
 
+   // Состояние ошибок при залогивании
+   const [loginError, setLoginError] = React.useState('')
+
    // Переменная для работы с useHistory
    const history = useHistory();
 
    //  Функция регистрации пользователя
-   const handleRegister = ({name, email, password}) => {
+   const handleRegister = ({ name, email, password }) => {
       // Очищаю ошибки при регистрации
       setRegistrationError('');
       // Отправляю запрос Api
       register(name, email, password)
-      .then((res) => {
-      // Залогинил пользователя
-      handleLogin({email, password})
-      })
-      .catch((error) => {
-      if(error.status === 409) {
-         setRegistrationError('Пользователь с таким email зарегистрирован')
-      }
-      else {
-         setRegistrationError('Что-то пошло не так');
-      }
-      })
+         .then((res) => {
+            // Залогинил пользователя
+            handleLogin({ email, password })
+         })
+         .catch((error) => {
+            if (error.status === 409) {
+               setRegistrationError('Пользователь с таким email зарегистрирован')
+            }
+            else {
+               setRegistrationError('Что-то пошло не так');
+            }
+         })
    };
 
    // Функция для залогивания пользователя
-   const handleLogin = ({email, password}) => {
+   const handleLogin = ({ email, password }) => {
+      // Очищаю ошибки при залогивании
+      setLoginError('');
       login(email, password)
-      .then((data) => {
-         // Устанавливаю в хранилище токен пользователя
-         localStorage.setItem('token', data.token)
-         // Получаю данные о пользователе
-         getUserInformation()
-         .then((userInfo) => {
-            // Делаю проверку о приходе данных
-            if (userInfo.data.name) {
-               history.push('/movies')
+         .then((data) => {
+            // Устанавливаю в хранилище токен пользователя
+            localStorage.setItem('token', data.token)
+            // Получаю данные о пользователе
+            getUserInformation()
+               .then((userInfo) => {
+                  // Делаю проверку о приходе данных
+                  if (userInfo.data.name) {
+                     history.push('/movies')
+                  }
+               })
+         })
+         .catch((error) => {
+            if (error.status === 400) {
+               setLoginError('Неправильный адрес почты или пароль')
+            }
+            else {
+               setLoginError('Что-то пошло не так. Попробуйте войти позднее.')
             }
          })
-      })
    };
 
    return (
@@ -81,15 +94,19 @@ function App() {
                </Route>
 
                <Route exact path="/signup">
-                  <Register 
-                  handleRegister={handleRegister}
-                  loggedIn={loggedIn}
-                  registrationError ={registrationError}
+                  <Register
+                     handleRegister={handleRegister}
+                     loggedIn={loggedIn}
+                     registrationError={registrationError}
                   />
                </Route>
 
                <Route exact path="/signin">
-                  <Login />
+                  <Login
+                     handleLogin={handleLogin}
+                     loggedIn={loggedIn}
+                     loginError={loginError}
+                  />
                </Route>
 
                <Route exact path="/profile">
@@ -97,8 +114,8 @@ function App() {
                </Route>
 
                <Route path="/*">
-              <PageNotFound />
-            </Route>
+                  <PageNotFound />
+               </Route>
 
             </Switch>
          </div>

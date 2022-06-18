@@ -2,11 +2,13 @@ const baseUrl = 'https://api.backend.diplom.nomoreparties.sbs';
 
 // Метод проверки ответа
 const checkResponse = (res) => {
-   if (!res.ok) {
-      return Promise.reject(`Error: ${res.status}`); // если ошибка, отклоняем промис
+   if (res.ok) {
+      return res.json();
+      
    }
-   return res.json();
+   return Promise.reject(res); // если ошибка, отклоняем промис
 };
+
 
 // Функция для запроса регистрации пользователя
 export const register = (name, email, password) => fetch(`${baseUrl}/signup`, {
