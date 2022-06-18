@@ -13,7 +13,9 @@ import Register from '../Register/Register'
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile'
 import { register, login, saveMovies, getMovies, editProfile, getUserInformation, deleteSavedMovies } from '../../untils/api/MainApi';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
+import { CurrentUserContext } from '../../contexts/CurrentUserContext'
 
 function App() {
 
@@ -26,6 +28,9 @@ function App() {
    // Состояние ошибок при залогивании
    const [loginError, setLoginError] = React.useState('')
 
+   // Переменная состояния для текущего пользователя.
+   const [currentUser, setCurrentUser] = React.useState({});
+
    // Переменная для работы с useHistory
    const history = useHistory();
 
@@ -36,6 +41,8 @@ function App() {
       // Отправляю запрос Api
       register(name, email, password)
          .then((res) => {
+            // Прописываю пользователя в стэйт
+            setCurrentUser(res.data)
             // Залогинил пользователя
             handleLogin({ email, password })
          })
@@ -62,6 +69,10 @@ function App() {
                .then((userInfo) => {
                   // Делаю проверку о приходе данных
                   if (userInfo.data.name) {
+                     // Прописываю пользователя в стэйт
+                     setCurrentUser(userInfo.data)
+                     // Прописываю состояние регистрации
+                     setloggedIn(true)
                      history.push('/movies')
                   }
                })
@@ -76,23 +87,46 @@ function App() {
          })
    };
 
+   // Функция выхода из редактирования аккаунта
+   const handleAccountExit = () => {
+      // Очищаю localStorage
+      localStorage.clear()
+      // Изменяю стейт регистрации в false
+      setloggedIn(false)
+      // Удаляю-зачищаю пользователя из состояния-контекста
+      setCurrentUser('')
+      // Перехожу на главную страницу
+      history.push('/')
+    }
+
    return (
+<CurrentUserContext.Provider value={currentUser}>
       <div className="App">
          <div className="page">
+
             <Switch>
 
                <Route exact path="/">
                   <Main loggedIn={loggedIn} />
                </Route>
 
-               <Route exact path="/movies">
-                  <Movies loggedIn={loggedIn} />
-               </Route>
 
-               <Route exact path="/saved-movies">
+               <ProtectedRoute
+                  exact path="/movies"
+                  component={Movies}
+                  loggedIn={loggedIn}
+               />
+
+               <ProtectedRoute
+                  exact path="/saved-movies"
+                  loggedIn={loggedIn}
+                  component={SavedMovies}
+               />
+               {/* <Route exact path="/saved-movies">
                   <SavedMovies loggedIn={loggedIn} />
-               </Route>
+               </Route> */}
 
+             
                <Route exact path="/signup">
                   <Register
                      handleRegister={handleRegister}
@@ -101,6 +135,7 @@ function App() {
                   />
                </Route>
 
+               
                <Route exact path="/signin">
                   <Login
                      handleLogin={handleLogin}
@@ -109,9 +144,16 @@ function App() {
                   />
                </Route>
 
-               <Route exact path="/profile">
+               <ProtectedRoute
+                  exact path="/profile"
+                  loggedIn={loggedIn}
+                  component={Profile}
+                  handleAccountExit={handleAccountExit}
+               />
+
+               {/* <Route exact path="/profile">
                   <Profile loggedIn={loggedIn} />
-               </Route>
+               </Route> */}
 
                <Route path="/*">
                   <PageNotFound />
@@ -120,6 +162,8 @@ function App() {
             </Switch>
          </div>
       </div>
+
+      </CurrentUserContext.Provider>
    );
 }
 

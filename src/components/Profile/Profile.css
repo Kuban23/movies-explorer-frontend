@@ -78,6 +78,10 @@
    outline: 1px solid #424242;
 }
 
+.profile__form-input_type_error {
+   color: #EE3465;
+}
+
 .profile__buttons {
    width: 410px;
    display: flex;
@@ -112,6 +116,12 @@
    border: none;
    outline: 1px solid #424242;
 }
+
+.profile__button:disabled {
+   color: #C2C2C2;
+   cursor: default;
+}
+
 
 .profile__button_type_logout {
    color: #EE3465;
