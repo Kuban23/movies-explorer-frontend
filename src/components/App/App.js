@@ -28,6 +28,12 @@ function App() {
    // Состояние ошибок при залогивании
    const [loginError, setLoginError] = React.useState('')
 
+   // Состояние ошибок при изменении профиля
+   const [updateProfileError, setUpdateProfileError] = React.useState('')
+
+   // Состояние при успешном изменении профиля
+   const [isSuccessfulProfileSubmit, setIsSuccessfulProfileSubmit] = React.useState(false)
+
    // Переменная состояния для текущего пользователя.
    const [currentUser, setCurrentUser] = React.useState({});
 
@@ -87,6 +93,30 @@ function App() {
          })
    };
 
+   // Функция для изменения профайла 
+   const handleUpdateUser = ({ name, email }) => {
+      // Очищаю ошибки в профиле
+      setUpdateProfileError('');
+      // Очищаю данные об успешном изменении данных
+      setIsSuccessfulProfileSubmit(false)
+      // Отправляю запрос Api
+      editProfile(name, email)
+         .then((res) => {
+            // Обновляю данные пользователя, прописываю данные в стэйт
+            setCurrentUser(res.data)
+            // Сообщаю пользователю, что данные пользователя изменены
+            setIsSuccessfulProfileSubmit(true)
+         })
+         .catch((error) => {
+            if (error.status === 409) {
+               setUpdateProfileError(`e-mail ${email} Пользователь с таким email зарегистрирован`)
+            }
+            else {
+               setUpdateProfileError('Что-то пошло не так. Попробуйте войти позднее.')
+            }
+         })
+   }
+
    // Функция выхода из редактирования аккаунта
    const handleAccountExit = () => {
       // Очищаю localStorage
@@ -97,71 +127,74 @@ function App() {
       setCurrentUser('')
       // Перехожу на главную страницу
       history.push('/')
-    }
+   }
 
    return (
-<CurrentUserContext.Provider value={currentUser}>
-      <div className="App">
-         <div className="page">
+      <CurrentUserContext.Provider value={currentUser}>
+         <div className="App">
+            <div className="page">
 
-            <Switch>
+               <Switch>
 
-               <Route exact path="/">
-                  <Main loggedIn={loggedIn} />
-               </Route>
+                  <Route exact path="/">
+                     <Main loggedIn={loggedIn} />
+                  </Route>
 
 
-               <ProtectedRoute
-                  exact path="/movies"
-                  component={Movies}
-                  loggedIn={loggedIn}
-               />
+                  <ProtectedRoute
+                     exact path="/movies"
+                     component={Movies}
+                     loggedIn={loggedIn}
+                  />
 
-               <ProtectedRoute
-                  exact path="/saved-movies"
-                  loggedIn={loggedIn}
-                  component={SavedMovies}
-               />
-               {/* <Route exact path="/saved-movies">
+                  <ProtectedRoute
+                     exact path="/saved-movies"
+                     loggedIn={loggedIn}
+                     component={SavedMovies}
+                  />
+                  {/* <Route exact path="/saved-movies">
                   <SavedMovies loggedIn={loggedIn} />
                </Route> */}
 
-             
-               <Route exact path="/signup">
-                  <Register
-                     handleRegister={handleRegister}
+
+                  <Route exact path="/signup">
+                     <Register
+                        handleRegister={handleRegister}
+                        loggedIn={loggedIn}
+                        registrationError={registrationError}
+                     />
+                  </Route>
+
+
+                  <Route exact path="/signin">
+                     <Login
+                        handleLogin={handleLogin}
+                        loggedIn={loggedIn}
+                        loginError={loginError}
+                     />
+                  </Route>
+
+                  <ProtectedRoute
+                     exact path="/profile"
                      loggedIn={loggedIn}
-                     registrationError={registrationError}
+                     component={Profile}
+                     handleAccountExit={handleAccountExit}
+                     handleUpdateUser={handleUpdateUser}
+                     updateProfileError={updateProfileError}
+                     isSuccessfulProfileSubmit={isSuccessfulProfileSubmit}
                   />
-               </Route>
 
-               
-               <Route exact path="/signin">
-                  <Login
-                     handleLogin={handleLogin}
-                     loggedIn={loggedIn}
-                     loginError={loginError}
-                  />
-               </Route>
-
-               <ProtectedRoute
-                  exact path="/profile"
-                  loggedIn={loggedIn}
-                  component={Profile}
-                  handleAccountExit={handleAccountExit}
-               />
-
-               {/* <Route exact path="/profile">
+                  {/* <Route exact path="/profile">
                   <Profile loggedIn={loggedIn} />
                </Route> */}
 
-               <Route path="/*">
-                  <PageNotFound />
-               </Route>
+                  <Route path="/*">
+                     <PageNotFound />
+                  </Route>
 
-            </Switch>
+               </Switch>
+            </div>
          </div>
-      </div>
 
       </CurrentUserContext.Provider>
    );

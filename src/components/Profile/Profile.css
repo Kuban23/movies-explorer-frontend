@@ -91,6 +91,20 @@
    padding-top: 200px;
 }
 
+.profile__error {
+   color: #EE3465;
+   font-size: 13px;
+   line-height: 16px;
+   text-align: center;
+}
+
+.profile__successful {
+   color: #2BE080;
+   font-size: 13px;
+   line-height: 16px;
+   text-align: center;
+}
+
 .profile__button {
    font-family: 'Inter';
    font-style: normal;
