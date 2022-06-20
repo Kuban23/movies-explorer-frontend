@@ -37,8 +37,15 @@ function App() {
    // Переменная состояния для текущего пользователя.
    const [currentUser, setCurrentUser] = React.useState({});
 
+   // Переменная состояния сохраненных фильмов
+   const [savedMovies, setSavedMovies] = React.useState('')
+
    // Переменная для работы с useHistory
    const history = useHistory();
+
+   // Сортировка фильмов пользователя
+   const sortingUserSavedMovies =(savedMovies, userId)=> savedMovies.filter((movie) => movie.owner ===userId);
+
 
    //  Функция регистрации пользователя
    const handleRegister = ({ name, email, password }) => {
@@ -66,6 +73,7 @@ function App() {
    const handleLogin = ({ email, password }) => {
       // Очищаю ошибки при залогивании
       setLoginError('');
+      // Отправляю запрос Api
       login(email, password)
          .then((data) => {
             // Устанавливаю в хранилище токен пользователя
@@ -79,12 +87,27 @@ function App() {
                      setCurrentUser(userInfo.data)
                      // Прописываю состояние регистрации
                      setloggedIn(true)
-                     history.push('/movies')
+                     // Реализация запроса сохраненных пользователем фильмов
+                     const currentUserId= userInfo.data._id
+                     // Отправляю запрос Api на получение фильмов
+                     getMovies()
+                     .then((res)=>{
+                        const beatfilmsMoviesApi =res.data
+                        // Сортирую свои / не свои фильмы
+                        const sortingUserMovies = sortingUserSavedMovies(beatfilmsMoviesApi, currentUserId)
+                        // Сохраняю фильмы в стэйт
+                        setSavedMovies(sortingUserMovies)
+                        // Сохраняю фильмы в localStorage
+                        localStorage.setItem('movies', JSON.stringify(sortingUserMovies))
+                     })
+                     .catch((error)=> console.log(error))
+                      // перехожу на страницу 'Фильмы'  
+                     history.push('/movies')                     
                   }
                })
          })
          .catch((error) => {
-            if (error.status === 400) {
+            if (error.status === 401) {
                setLoginError('Неправильный адрес почты или пароль')
             }
             else {
@@ -129,6 +152,47 @@ function App() {
       history.push('/')
    }
 
+   // Функция сохранения фильмов
+   const handleSavedMovie =({movie}) =>{
+      // Отправляю запрос Api
+      saveMovies(movie)
+      .then(()=>{
+         // Запрашиваю массив сохраненных фильмов
+         getMovies()
+         .then((res)=>{
+            const beatfilmsMoviesApi =res.data
+            // Сортирую свои фильмы
+            const sortingUserMovies = sortingUserSavedMovies(beatfilmsMoviesApi, currentUser._id)
+             // Сохраняю фильмы в стэйт
+             setSavedMovies(sortingUserMovies)
+             // Сохраняю фильмы в localStorage
+             localStorage.setItem('movies', JSON.stringify(sortingUserMovies))
+         })
+         .catch((error)=> console.log(error))
+      })
+   }
+
+   // Функция удаления сохраненных фильмов
+   const handleMovieDelete =({movieId})=>{
+      // Отправляю запрос Api
+      deleteSavedMovies(movieId)
+      .then(()=>{
+         // Запрашиваю массив сохраненных фильмов
+         getMovies()
+         .then((res)=>{
+            const beatfilmsMoviesApi =res.data
+            // Сортирую свои фильмы
+            const sortingUserMovies = sortingUserSavedMovies(beatfilmsMoviesApi, currentUser._id)
+            // Сохраняю фильмы в стэйт
+            setSavedMovies(sortingUserMovies)
+            // Сохраняю фильмы в localStorage
+            localStorage.setItem('movies', JSON.stringify(sortingUserMovies))
+         })
+         .catch((error)=> console.log(error))
+      })
+   }
+
+
    return (
       <CurrentUserContext.Provider value={currentUser}>
          <div className="App">
@@ -145,12 +209,17 @@ function App() {
                      exact path="/movies"
                      component={Movies}
                      loggedIn={loggedIn}
+                     savedMovies={savedMovies}
+                     handleSavedMovie={handleSavedMovie}
+                     handleMovieDelete={handleMovieDelete}
                   />
 
                   <ProtectedRoute
                      exact path="/saved-movies"
                      loggedIn={loggedIn}
                      component={SavedMovies}
+                     savedMovies={savedMovies}
+                     handleMovieDelete={handleMovieDelete}
                   />
                   {/* <Route exact path="/saved-movies">
                   <SavedMovies loggedIn={loggedIn} />
