@@ -98,6 +98,18 @@
    margin: 0px;
 }
 
+.search-form__text-error {
+   max-width: 400px;
+   line-height: 18px;
+   font-size: 16px;
+   width: 31.25vw;
+   min-width: 200px;
+   box-sizing: border-box;
+   text-align: center;
+   padding: 0px;
+   margin: 0px;
+ }
+
 @media (max-width: 770px) {
    .search-form {
       padding: 50px 30px 127px 30px;

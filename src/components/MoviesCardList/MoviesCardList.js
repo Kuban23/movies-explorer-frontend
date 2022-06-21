@@ -3,7 +3,12 @@ import React from "react";
 import './MoviesCardList.css'
 import MoviesCard from '../MoviesCard/MoviesCard'
 
-function MoviesCardList() {
+function MoviesCardList(props) {
+
+const movieDuration = (movie) => `${Math.foor(movie.duration / 60)}ч ${movie.duration % 60}`
+
+
+
    return (
       <section className="movies-card-list">
          <ul className="movies-card-list__list">

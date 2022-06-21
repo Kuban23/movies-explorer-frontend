@@ -10,7 +10,12 @@ function SavedMovies(props){
 	return ( 
 	<section className="saved-movies">
 	<Header loggedIn={props.loggedIn}/>
-	<SearchForm />	
+	<SearchForm 
+	savedMovies={props.savedMovies}
+	handleMovieDelete={props.handleMovieDelete}
+
+
+	/>	
    <div className="saved-movies__list">
    <MoviesCard/>
    <MoviesCard/>

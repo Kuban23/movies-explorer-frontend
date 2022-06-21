@@ -40,6 +40,9 @@ function App() {
    // Переменная состояния сохраненных фильмов
    const [savedMovies, setSavedMovies] = React.useState('')
 
+   // Состояние кол-ва карточек
+   const [cardCount, setCardCount] = React.useState(window.innerWidth > 500 ? 7 : 5)
+
    // Переменная для работы с useHistory
    const history = useHistory();
 
@@ -212,6 +215,7 @@ function App() {
                      savedMovies={savedMovies}
                      handleSavedMovie={handleSavedMovie}
                      handleMovieDelete={handleMovieDelete}
+                     cardCount={cardCount}
                   />
 
                   <ProtectedRoute

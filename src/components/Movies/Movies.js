@@ -9,7 +9,13 @@ function Movies(props){
 	return ( 
 <div>
    <Header loggedIn={props.loggedIn}/>
-	<SearchForm/>
+	<SearchForm
+	savedMovies={props.savedMovies}
+	handleSavedMovie={props.handleSavedMovie}
+	handleMovieDelete={props.handleMovieDelete}
+	isSaved={false}
+	cardCount={props.cardCount}
+	/>
    <MoviesCardList/>
 	<Footer />
 </div>
