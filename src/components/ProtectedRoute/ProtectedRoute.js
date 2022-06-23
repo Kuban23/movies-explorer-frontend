@@ -4,7 +4,7 @@ import { Route, Redirect } from 'react-router-dom'
 const ProtectedRoute = ({ component: Component, ...props }) => (
    <Route>
       {() =>
-         props.isAuth === true ? (
+         props.loggedIn === true ? (
             <Component {...props} />
          ) : localStorage.getItem('token') ? (
             <Component {...props} />

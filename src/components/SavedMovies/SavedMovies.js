@@ -4,7 +4,7 @@ import './SavedMovies.css'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import SearchForm from '../SearchForm/SearchForm';
-import MoviesCard from '../MoviesCard/MoviesCard'
+// import MoviesCard from '../MoviesCard/MoviesCard'
 
 function SavedMovies(props){
 	return ( 
@@ -13,14 +13,14 @@ function SavedMovies(props){
 	<SearchForm 
 	savedMovies={props.savedMovies}
 	handleMovieDelete={props.handleMovieDelete}
-
-
+	isSaved
+   cardCount={props.cardCount}
 	/>	
-   <div className="saved-movies__list">
+   {/* <div className="saved-movies__list">
    <MoviesCard/>
    <MoviesCard/>
    <MoviesCard/>
-   </div>
+   </div> */}
 	<Footer/>
 
 	</section>

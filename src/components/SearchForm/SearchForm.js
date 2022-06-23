@@ -4,7 +4,7 @@ import './SearchForm.css'
 import MoviesCardList from '../MoviesCardList/MoviesCardList'
 import formValidationHook from '../../hook/formValidationHook'
 import Preloader from '../Preloader/Preloader'
-import {getMovies} from '../../untils/api/MainApi'
+import {getMovies} from '../../untils/api/MoviesApi'
 
 function SearchForm({savedMovies, isSaved, cardCount, handleMovieDelete, handleSavedMovie}) {
 
@@ -61,18 +61,19 @@ function SearchForm({savedMovies, isSaved, cardCount, handleMovieDelete, handleS
    const handleSubmitForm = (evt) => {
       evt.preventDefault()
       if (isValid){
-   // Отключаю найденные карточки
-   setIsFindCards(false)
-   // Отключаю поиск
+         // Отключаю поиск
    setIsPrevSearch(false)
+   // Отключаю найденные карточки
+   setIsFindCards(false)   
    // Изменяю работу сабмита при работе saved-movies и movies
    if (!isSaved) {
       setIsError(false)
       setIsErrorNetwork(false)
-      // Включаю Preloader
-      setIsPreloaderVisual(true)
       // Выключаю Input
       setIsInputDisabled(true)
+      // Включаю Preloader
+      setIsPreloaderVisual(true)
+      
       // Отправляю запрос Api
       getMovies()
       .then((movies)=>{
@@ -134,7 +135,7 @@ function SearchForm({savedMovies, isSaved, cardCount, handleMovieDelete, handleS
       // Выключаю Input
       setIsInputDisabled(true)
       // Включаю Preloader
-      setIsPreloaderVisual(false)
+      setIsPreloaderVisual(true)
       // Реализую поиск фильмов по сохраненным фильмам Saved-movies
       const filterSavedMovies = filterItemMovies(savedMovies, values.search)
       const filterShortSavedFilms = filterSavedMovies.filter((movie) => movie.duration <= 40)
@@ -157,8 +158,8 @@ function SearchForm({savedMovies, isSaved, cardCount, handleMovieDelete, handleS
          }
       }
       else { // Записал фильмы в стэйт
-         setMoviesStorage(filterShortSavedFilms)
-         if (filterShortSavedFilms.length === 0) {
+         setMoviesStorage(filterSavedMovies)
+         if (filterSavedMovies.length === 0) {
             setIsNothingFound(true)
             setIsFindCards(false)
          }
@@ -270,8 +271,7 @@ function SearchForm({savedMovies, isSaved, cardCount, handleMovieDelete, handleS
 
     // Обработчик для чекбокса
   const onShortFilmsCheckbox = () => {
-   // Переключаем стейт
-   setIsShort(!isShort)
+     setIsShort(!isShort)
  }
    
    return (
@@ -283,7 +283,7 @@ function SearchForm({savedMovies, isSaved, cardCount, handleMovieDelete, handleS
                onChange={handleChange} disabled={isInputDisabled} value={values.search}/>
                <button className="search-form__btn-submit" aria-label="Кнопка поиск" type="submit" />
             </div>
-            <label className="search-form__checkbox-container">
+            <label className="search-form__checkbox-container" htmlFor="short-films">
                <input className="search-form__checkbox-btn-notvisible" type="checkbox" name="short-films" 
                onChange={onShortFilmsCheckbox} id ="short-films"/>
                <span className="search-form__checkbox-btn-visible"></span>
@@ -293,24 +293,23 @@ function SearchForm({savedMovies, isSaved, cardCount, handleMovieDelete, handleS
       </section>
       {isFindCards && moviesStorage.length > 0 && (
          <MoviesCardList
+         savedMovies={savedMovies}
          isSaved={isSaved}
+         cardCount={cardCount}
          dataLengthMovies={dataLengthMovies}
          movies={moviesStorage}
          isrenderCounter={isrenderCounter}
          setRenderCounter={setRenderCounter}
-         cardCount={cardCount}
          isButtonVisible={isButtonVisible}
          setIsButtonVisible={setIsButtonVisible}
          handleMovieDelete={handleMovieDelete}
-         handleSavedMovie={handleSavedMovie}
-         savedMovies={savedMovies}
+         handleSavedMovie={handleSavedMovie}         
          />
       )}
       {isPreloaderVisual && <Preloader/>}
       {isNothingFound && <p className="search-form__text-error">Ничего не найдено</p>}
       {isErrorNetwork && (<p className="search-form__text-error">Во время запроса произошла ошибка. Попробуйте сделать запрос еще раз.</p>)}
-      </>   
-      
+      </>         
    );
 }
 

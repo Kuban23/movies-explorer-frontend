@@ -3,7 +3,7 @@ import './Movies.css'
 import SearchForm from '../../components/SearchForm/SearchForm';
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
-import MoviesCardList from '../../components/MoviesCardList/MoviesCardList';
+//import MoviesCardList from '../../components/MoviesCardList/MoviesCardList';
 
 function Movies(props){
 	return ( 
@@ -16,7 +16,7 @@ function Movies(props){
 	isSaved={false}
 	cardCount={props.cardCount}
 	/>
-   <MoviesCardList/>
+   {/* <MoviesCardList/> */}
 	<Footer />
 </div>
 );

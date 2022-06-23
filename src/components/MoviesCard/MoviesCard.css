@@ -62,9 +62,9 @@
    background-image: url('../../images/like_active.svg');
 }
 
-/* .movies-button_type_unactive-like-btn {
+.movies-button_type_unactive-like-btn {
    background-image: url('../../images/like.svg');
-} */
+}
 
 .movies-card__button_type_close-btn {
    background-image: url('../../images/Close_btn.svg');

@@ -40,6 +40,7 @@ function Profile(props) {
       const email = refEmail.current.value
       // Заданю изменение данных пользователя
       props.handleUpdateUser({ name, email })
+      evt.target.reset()
       setIsDisabledInput(false) // Разблокирую форму
 
    }

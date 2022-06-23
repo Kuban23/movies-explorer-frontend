@@ -14,18 +14,17 @@ function Login(props){
 
 	 const onLoginSumbit = (evt) => {
 		evt.preventDefault()
-		props.handleLogin({ email: values.email, password: values.password })
-		
+		props.handleLogin({ email: values.email, password: values.password })		
 	 }
 
 	return ( 
-<section className="login">
+		<section className="login">
 <div className="login-container">
 
 <Link className="login__logo" to="/" />
 
 <h1 className="login__title">Рады видеть!</h1>
-<form className="login__form" onSubmit={onLoginSumbit}>
+<form className="login__form" name="login" onSubmit={onLoginSumbit} noValidate>
 <ul className="login__form-input-list">
 	<li className="login__form-input-list-item">
 	<label className="login__form-input-label">E-mail</label>
@@ -40,6 +39,7 @@ function Login(props){
 	type="password" placeholder="Ваш пароль" minLength="8" maxLength="20" required onChange={handleChange} values={values.password}/>
 	<span className="login__form-input-error">{errors.password}</span>
 	</li>	
+
 	<span className="login__form-input-error">{props.loginError}</span>
 </ul>
 <button className="login__button" type="submit" aria-label='Кнопка отправить' disabled={!isValid}>Войти</button>
@@ -49,7 +49,6 @@ function Login(props){
 			</div>
 </form>
 </div>
-
 </section>
 );
 }

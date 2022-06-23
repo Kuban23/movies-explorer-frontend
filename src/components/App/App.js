@@ -14,8 +14,8 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile'
 import { register, login, saveMovies, getMovies, editProfile, getUserInformation, deleteSavedMovies } from '../../untils/api/MainApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
-
 import { CurrentUserContext } from '../../contexts/CurrentUserContext'
+import UnProtectedRoute from '../UnProtectedRoute/UnProtectedRoute'
 
 function App() {
 
@@ -46,9 +46,15 @@ function App() {
    // Переменная для работы с useHistory
    const history = useHistory();
 
-   // Сортировка фильмов пользователя
-   const sortingUserSavedMovies =(savedMovies, userId)=> savedMovies.filter((movie) => movie.owner ===userId);
+   const [screenWidth, setScreenWidth] = React.useState(window.innerWidth)
 
+   const handleResizing = () => {
+      setScreenWidth(window.innerWidth)  // Записываю сайт в стейт для лальнейшего использования
+    }
+
+
+   // Сортировка фильмов пользователя
+   const sortingUserSavedMovies =(savedFilms, userId)=> savedFilms.filter((movie) => movie.owner ===userId);
 
    //  Функция регистрации пользователя
    const handleRegister = ({ name, email, password }) => {
@@ -101,22 +107,29 @@ function App() {
                         // Сохраняю фильмы в стэйт
                         setSavedMovies(sortingUserMovies)
                         // Сохраняю фильмы в localStorage
-                        localStorage.setItem('movies', JSON.stringify(sortingUserMovies))
+                        localStorage.setItem('films', JSON.stringify(sortingUserMovies))
                      })
                      .catch((error)=> console.log(error))
                       // перехожу на страницу 'Фильмы'  
                      history.push('/movies')                     
                   }
+               }).catch((error) => {
+                  if (error.status === 401) {
+                     setLoginError('Неправильный адрес почты или пароль')
+                  }
+                  else {
+                     setLoginError('Что-то пошло не так. Попробуйте войти позднее.')
+                  }
                })
          })
-         .catch((error) => {
-            if (error.status === 401) {
-               setLoginError('Неправильный адрес почты или пароль')
-            }
-            else {
-               setLoginError('Что-то пошло не так. Попробуйте войти позднее.')
-            }
-         })
+         // .catch((error) => {
+         //    if (error.status === 401) {
+         //       setLoginError('Неправильный адрес почты или пароль')
+         //    }
+         //    else {
+         //       setLoginError('Что-то пошло не так. Попробуйте войти позднее.')
+         //    }
+         // })
    };
 
    // Функция для изменения профайла 
@@ -169,7 +182,7 @@ function App() {
              // Сохраняю фильмы в стэйт
              setSavedMovies(sortingUserMovies)
              // Сохраняю фильмы в localStorage
-             localStorage.setItem('movies', JSON.stringify(sortingUserMovies))
+             localStorage.setItem('films', JSON.stringify(sortingUserMovies))
          })
          .catch((error)=> console.log(error))
       })
@@ -189,12 +202,54 @@ function App() {
             // Сохраняю фильмы в стэйт
             setSavedMovies(sortingUserMovies)
             // Сохраняю фильмы в localStorage
-            localStorage.setItem('movies', JSON.stringify(sortingUserMovies))
+            localStorage.setItem('films', JSON.stringify(sortingUserMovies))
          })
          .catch((error)=> console.log(error))
       })
    }
 
+   const tokenCheck = () => {
+      const token = localStorage.getItem('token')
+      if (token) {
+        getUserInformation()
+          .then((userInfo) => {
+            // проверяю приходял данные или нет
+            if (userInfo.data.name) {
+              // Записываю данные в контекст
+              setCurrentUser(userInfo.data)
+              // Записываю в стейт авторизации
+              setloggedIn(true)
+              // Делаю запрос на сохранённые фильмы
+              const savedFilms = JSON.parse(localStorage.getItem('films'))
+              setSavedMovies(savedFilms)
+            }
+          })
+          .catch((error) => {
+            // Удаляю не валидный токен
+            localStorage.clear()
+            return console.log(error)
+          })
+      }
+    }
+
+    // Получаю данные пользователя при монтировании компонента
+  React.useEffect(() => {
+   tokenCheck()
+ }, [])
+
+ React.useEffect(() => {
+   // Вешаем слушатель на ресайз
+   window.addEventListener('resize', () =>
+     setTimeout(() => {
+      handleResizing()
+     }, 1000),
+   )
+ }, [])
+
+  // Юзаю этот юзЭффект если изменится стейт ширины экрана и выставим актуальное количество карточек
+  React.useEffect(() => {
+   setCardCount(window.innerWidth > 500 ? 7 : 5)
+ }, [screenWidth])
 
    return (
       <CurrentUserContext.Provider value={currentUser}>
@@ -206,7 +261,6 @@ function App() {
                   <Route exact path="/">
                      <Main loggedIn={loggedIn} />
                   </Route>
-
 
                   <ProtectedRoute
                      exact path="/movies"
@@ -224,28 +278,27 @@ function App() {
                      component={SavedMovies}
                      savedMovies={savedMovies}
                      handleMovieDelete={handleMovieDelete}
+                     cardCount={cardCount}
                   />
                   {/* <Route exact path="/saved-movies">
                   <SavedMovies loggedIn={loggedIn} />
                </Route> */}
 
+                  <UnProtectedRoute
+                     exact path="/signup"
+                     handleRegister={handleRegister}
+                     loggedIn={loggedIn}
+                     registrationError={registrationError}
+                     component={Register}                    
+                  />
 
-                  <Route exact path="/signup">
-                     <Register
-                        handleRegister={handleRegister}
-                        loggedIn={loggedIn}
-                        registrationError={registrationError}
-                     />
-                  </Route>
-
-
-                  <Route exact path="/signin">
-                     <Login
-                        handleLogin={handleLogin}
-                        loggedIn={loggedIn}
-                        loginError={loginError}
-                     />
-                  </Route>
+                  <UnProtectedRoute
+                  exact path="/signin"
+                  handleLogin={handleLogin}
+                  loggedIn={loggedIn}
+                  loginError={loginError}
+                  component={Login}                   
+                  />                  
 
                   <ProtectedRoute
                      exact path="/profile"
