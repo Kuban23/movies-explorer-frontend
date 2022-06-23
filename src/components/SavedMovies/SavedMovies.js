@@ -8,13 +8,14 @@ import SearchForm from '../SearchForm/SearchForm';
 
 function SavedMovies(props){
 	return ( 
-	<section className="saved-movies">
+	// <section className="saved-movies">
+	<>
 	<Header loggedIn={props.loggedIn}/>
 	<SearchForm 
-	savedMovies={props.savedMovies}
-	handleMovieDelete={props.handleMovieDelete}
 	isSaved
-   cardCount={props.cardCount}
+	cardCount={props.cardCount}
+	handleMovieDelete={props.handleMovieDelete}
+	savedMovies={props.savedMovies}
 	/>	
    {/* <div className="saved-movies__list">
    <MoviesCard/>
@@ -22,8 +23,8 @@ function SavedMovies(props){
    <MoviesCard/>
    </div> */}
 	<Footer/>
-
-	</section>
+	</>
+	
 );
 }
 

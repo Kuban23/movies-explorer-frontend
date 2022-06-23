@@ -53,12 +53,14 @@ function SearchForm({savedMovies, isSaved, cardCount, handleMovieDelete, handleS
    // Состояние длины массива с фильмами
    const [dataLengthMovies, setDataLengthMovies] = React.useState(0)
 
-       // Функция сортировки фильмов по имени
+      // Функция сортировки фильмов по имени
+    //   const filterItemMovies = (arr, query) =>
+    // arr.filter((movie) => movie.nameRU.toLowerCase().indexOf(query.toLowerCase()) !== -1)
       const filterItemMovies = (arr, query) =>
       arr.filter((movie) => movie.nameRU.toLowerCase().indexOf(query.toLowerCase()) !== -1)
 
    // Функция обработчик поиска
-   const handleSubmitForm = (evt) => {
+     const handleSubmitForm = (evt) => {
       evt.preventDefault()
       if (isValid){
          // Отключаю поиск
@@ -93,6 +95,7 @@ function SearchForm({savedMovies, isSaved, cardCount, handleMovieDelete, handleS
       setshortArrayFilms(shortFilms)
       //Прописываю найденные фильмы в стэйт 
       setfilterArrayFilm(filterFilms)
+     
       // Если короткометражка, то показываю ее
       if (isShort) {
          if (shortFilms.length > 0) {
@@ -179,7 +182,7 @@ function SearchForm({savedMovies, isSaved, cardCount, handleMovieDelete, handleS
    };
 
    // Если меняется стэйт, то меняю массив с фильмами который рендерится
-   React.useEffect(()=>{ // Меняем массив в том случае, если в нем присутствуют фильмы
+     React.useEffect(()=>{ // Меняем массив в том случае, если в нем присутствуют фильмы
       if (filterArrayFilm.length > 0) {
          if (!isSaved) {
             // Изменяю стэйты в случае возвращения из короткометражек
@@ -232,42 +235,70 @@ function SearchForm({savedMovies, isSaved, cardCount, handleMovieDelete, handleS
    }, [isShort]);
 
    // В случае изменения сохраненного массива, то перезаписываем saved-movies
-   React.useEffect(() => {
+     React.useEffect(() => {
       if (isSaved && !isPrevSearch) {
         setMoviesStorage(savedMovies)
       }
     }, [savedMovies])
 
     // При каждом изменении компоненты провожу след операции
-    React.useEffect(()=> {
-      const searchMovies = JSON.parse(localStorage.getItem('moviesLongFilms'))
-      const searchShortMovies = JSON.parse(localStorage.getItem('moviesShortFilms'))
-      const savedSearchMovies = JSON.parse(localStorage.getItem('moviesSavedLongFilms'))
-      const savedSearchShortMovies = JSON.parse(localStorage.getItem('moviesSavedShortFilms'))
-      if (isSaved) {
-      if (savedSearchMovies?.length > 0) {
-         setMoviesStorage(savedSearchMovies)
-         setfilterArrayFilm(savedSearchMovies)
-         setshortArrayFilms(savedSearchShortMovies)
-         // Показываю карточки
-         setIsFindCards(true)
-      }   
+    React.useEffect(() => {
+    const lastSearchMovies = JSON.parse(localStorage.getItem('moviesLongFilms'))
+    const lastSearchShortMovies = JSON.parse(localStorage.getItem('moviesShortFilms'))
+    const lastSavedSearchMovies = JSON.parse(localStorage.getItem('moviesSavedLongFilms'))
+    const lastSavedSearchShortMovies = JSON.parse(localStorage.getItem('moviesSavedShortFilms'))
+    // Выставляем разный массив на рендер, в зависимости от страницы
+    if (isSaved) {
+      if (lastSavedSearchMovies?.length > 0) {
+        setMoviesStorage(lastSavedSearchMovies)
+        setfilterArrayFilm(lastSavedSearchMovies)
+        setshortArrayFilms(lastSavedSearchShortMovies)
+        // включаем секцию с карточками
+        setIsFindCards(true)
       }
-      else if (searchMovies?.length > 0) { // В случае прихода от movies, показываю фильмы и кнопу (Еще)
-         setMoviesStorage(searchMovies)
-         setfilterArrayFilm(searchMovies)
-         setshortArrayFilms(searchShortMovies)
-         // Показываю карточки
-         setIsFindCards(true)
-         setRenderCounter(cardCount)
-         setDataLengthMovies(searchMovies.length)
-         // Показываю кнопку
-         if (searchMovies.length > cardCount) {
-            setIsButtonVisible(true)
-         }
+    } else if (lastSearchMovies?.length > 0) {
+      // Если пришли от movies, то надо отобразить фильмы + показывать/не показывать кнопку "Ещё"
+      setMoviesStorage(lastSearchMovies)
+      setfilterArrayFilm(lastSearchMovies)
+      setshortArrayFilms(lastSearchShortMovies)
+      // включаем секцию с карточками
+      setIsFindCards(true)
+      setRenderCounter(cardCount)
+      setDataLengthMovies(lastSearchMovies.length)
+      // выставляем кнопку
+      if (lastSearchMovies.length > cardCount) {
+         setIsButtonVisible(true)
       }
-    },[])
-
+    }
+  }, [])
+   //  React.useEffect(()=> {
+   //    const searchMovies = JSON.parse(localStorage.getItem('moviesLongFilms'))
+   //    const searchShortMovies = JSON.parse(localStorage.getItem('moviesShortFilms'))
+   //    const savedSearchMovies = JSON.parse(localStorage.getItem('moviesSavedLongFilms'))
+   //    const savedSearchShortMovies = JSON.parse(localStorage.getItem('moviesSavedShortFilms'))
+   //    if (isSaved) {
+   //    if (savedSearchMovies?.length > 0) {
+   //       setMoviesStorage(savedSearchMovies)
+   //       setfilterArrayFilm(savedSearchMovies)
+   //       setshortArrayFilms(savedSearchShortMovies)
+   //       // Показываю карточки
+   //       setIsFindCards(true)
+   //    }   
+   //    }
+   //    else if (searchMovies?.length > 0) { // В случае прихода от movies, показываю фильмы и кнопу (Еще)
+   //       setMoviesStorage(searchMovies)
+   //       setfilterArrayFilm(searchMovies)
+   //       setshortArrayFilms(searchShortMovies)
+   //       // Показываю карточки
+   //       setIsFindCards(true)
+   //       setRenderCounter(cardCount)
+   //       setDataLengthMovies(searchMovies.length)
+   //       // Показываю кнопку
+   //       if (searchMovies.length > cardCount) {
+   //          setIsButtonVisible(true)
+   //       }
+   //    }
+   //  },[])
 
     // Обработчик для чекбокса
   const onShortFilmsCheckbox = () => {
@@ -283,6 +314,10 @@ function SearchForm({savedMovies, isSaved, cardCount, handleMovieDelete, handleS
                onChange={handleChange} disabled={isInputDisabled} value={values.search}/>
                <button className="search-form__btn-submit" aria-label="Кнопка поиск" type="submit" />
             </div>
+            <span
+            className={!isError ? 'search-form__input-text-error': 'search-form__input-text-error search-form__input-text-error_active'}>
+            Нужно ввести ключевое слово.
+          </span>
             <label className="search-form__checkbox-container" htmlFor="short-films">
                <input className="search-form__checkbox-btn-notvisible" type="checkbox" name="short-films" 
                onChange={onShortFilmsCheckbox} id ="short-films"/>
@@ -293,18 +328,31 @@ function SearchForm({savedMovies, isSaved, cardCount, handleMovieDelete, handleS
       </section>
       {isFindCards && moviesStorage.length > 0 && (
          <MoviesCardList
-         savedMovies={savedMovies}
          isSaved={isSaved}
-         cardCount={cardCount}
-         dataLengthMovies={dataLengthMovies}
          movies={moviesStorage}
+         dataLengthMovies={dataLengthMovies}
          isrenderCounter={isrenderCounter}
          setRenderCounter={setRenderCounter}
+         ardCount={cardCount}
          isButtonVisible={isButtonVisible}
          setIsButtonVisible={setIsButtonVisible}
          handleMovieDelete={handleMovieDelete}
-         handleSavedMovie={handleSavedMovie}         
-         />
+         handleSavedMovie={handleSavedMovie}
+         savedMovies={savedMovies}
+       />
+         // <MoviesCardList
+         // savedMovies={savedMovies}
+         // isSaved={isSaved}
+         // cardCount={cardCount}
+         // dataLengthMovies={dataLengthMovies}
+         // movies={moviesStorage}
+         // isrenderCounter={isrenderCounter}
+         // setRenderCounter={setRenderCounter}
+         // isButtonVisible={isButtonVisible}
+         // setIsButtonVisible={setIsButtonVisible}
+         // handleMovieDelete={handleMovieDelete}
+         // handleSavedMovie={handleSavedMovie}         
+         // />
       )}
       {isPreloaderVisual && <Preloader/>}
       {isNothingFound && <p className="search-form__text-error">Ничего не найдено</p>}

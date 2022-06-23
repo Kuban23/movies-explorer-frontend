@@ -16,21 +16,38 @@ function MoviesCardList({
    handleMovieDelete, 
    handleSavedMovie}) {
 
- const movieDuration = (movie) => `${Math.foor(movie.duration / 60)}ч ${movie.duration % 60}`
+   const movieDuration = (movie) => `${Math.floor(movie.duration / 60)}ч ${movie.duration % 60}м`
+   
   // Загружаю сохраненные фильмы на странице
- const renderArrayItem = isSaved ? movies : movies.slice(0, isrenderCounter);
+  const renderArrayItem = isSaved ? movies : movies.slice(0, isrenderCounter)
 
- // Делаю проверку о возможности добавления еще карточек с фильмами
- const addbuttonMovies = ()=> {
- if (dataLengthMovies - isrenderCounter <= cardCount) {
-   setRenderCounter(isrenderCounter + (dataLengthMovies - isrenderCounter))
-   setIsButtonVisible(false)
- }
- else {
-   setIsButtonVisible(true)
-   setRenderCounter(isrenderCounter + cardCount)
- }
- };
+  // Делаю проверку о возможности добавления еще карточек с фильмами
+  const addbuttonMovies = () => {
+    // проверяем может ли мы ещё добавить полное количество карточек
+    if (dataLengthMovies - isrenderCounter <= cardCount) {
+      setRenderCounter(isrenderCounter + (dataLengthMovies - isrenderCounter))
+      setIsButtonVisible(false)
+    } else {
+      setIsButtonVisible(true)
+      setRenderCounter(isrenderCounter + cardCount)
+    }
+  }
+
+//  const movieDuration = (movie) => `${Math.foor(movie.duration / 60)}ч ${movie.duration % 60}`
+//   // Загружаю сохраненные фильмы на странице
+//  const renderArrayItem = isSaved ? movies : movies.slice(0, isrenderCounter);
+
+//  // Делаю проверку о возможности добавления еще карточек с фильмами
+//  const addbuttonMovies = ()=> {
+//  if (dataLengthMovies - isrenderCounter <= cardCount) {
+//    setRenderCounter(isrenderCounter + (dataLengthMovies - isrenderCounter))
+//    setIsButtonVisible(false)
+//  }
+//  else {
+//    setIsButtonVisible(true)
+//    setRenderCounter(isrenderCounter + cardCount)
+//  }
+//  };
 
    return (
       <section className="movies-card-list">
@@ -53,7 +70,7 @@ function MoviesCardList({
          ) : (
             <ul className="movies-card-list__list">
                {renderArrayItem &&
-               renderArrayItem.map((movie)=> (
+               renderArrayItem.map((movie) => (
                   <li key= {movie.id}>
                      <MovieCard
                      isSaved={isSaved}

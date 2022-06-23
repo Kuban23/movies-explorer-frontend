@@ -40,7 +40,7 @@ function Login(props){
 	<span className="login__form-input-error">{errors.password}</span>
 	</li>	
 
-	<span className="login__form-input-error">{props.loginError}</span>
+	<span className={props.loginError ? 'login__form-input-error login__form-input-error_active' : 'login__form-input-error'}>{props.loginError}</span>
 </ul>
 <button className="login__button" type="submit" aria-label='Кнопка отправить' disabled={!isValid}>Войти</button>
 			<div className="login__form-button-container">

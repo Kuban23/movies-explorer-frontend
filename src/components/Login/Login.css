@@ -176,6 +176,21 @@
 	opacity: 0.8;
 }
 
+.login__form-input-error {
+	font-weight: normal;
+	font-size: 10px;
+	line-height: 12px;
+	text-align: left;
+	align-self: flex-start;
+	color: #EE3465;
+	visibility: hidden;
+	opacity: visibility .3s ease;
+ }
+
+ .login__form-input-error_active {
+	visibility: visible;
+ }
+
 @media (max-width: 770px) {
 	.login {
 		padding-top: 232px;
