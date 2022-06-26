@@ -3,9 +3,6 @@ import React from "react";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
 import './App.css'
-// import Profile from '../Profile/Profile'
-// import Register from '../Register/Register';
-// import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import { Switch, Route, useHistory } from 'react-router-dom'
 import SavedMovies from '../SavedMovies/SavedMovies'
@@ -279,10 +276,7 @@ function App() {
                      savedMovies={savedMovies}
                      handleMovieDelete={handleMovieDelete}
                      cardCount={cardCount}
-                  />
-                  {/* <Route exact path="/saved-movies">
-                  <SavedMovies loggedIn={loggedIn} />
-               </Route> */}
+                  />                  
 
                   <UnProtectedRoute
                      exact path="/signup"
@@ -309,11 +303,7 @@ function App() {
                      updateProfileError={updateProfileError}
                      isSuccessfulProfileSubmit={isSuccessfulProfileSubmit}
                   />
-
-                  {/* <Route exact path="/profile">
-                  <Profile loggedIn={loggedIn} />
-               </Route> */}
-
+                
                   <Route path="/*">
                      <PageNotFound />
                   </Route>

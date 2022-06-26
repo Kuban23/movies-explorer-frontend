@@ -272,35 +272,7 @@ function SearchForm({ savedMovies, isSaved, cardCount, handleMovieDelete, handle
          }
       }
    }, [])
-   //  React.useEffect(()=> {
-   //    const searchMovies = JSON.parse(localStorage.getItem('moviesLongFilms'))
-   //    const searchShortMovies = JSON.parse(localStorage.getItem('moviesShortFilms'))
-   //    const savedSearchMovies = JSON.parse(localStorage.getItem('moviesSavedLongFilms'))
-   //    const savedSearchShortMovies = JSON.parse(localStorage.getItem('moviesSavedShortFilms'))
-   //    if (isSaved) {
-   //    if (savedSearchMovies?.length > 0) {
-   //       setMoviesStorage(savedSearchMovies)
-   //       setfilterArrayFilm(savedSearchMovies)
-   //       setshortArrayFilms(savedSearchShortMovies)
-   //       // Показываю карточки
-   //       setIsFindCards(true)
-   //    }   
-   //    }
-   //    else if (searchMovies?.length > 0) { // В случае прихода от movies, показываю фильмы и кнопу (Еще)
-   //       setMoviesStorage(searchMovies)
-   //       setfilterArrayFilm(searchMovies)
-   //       setshortArrayFilms(searchShortMovies)
-   //       // Показываю карточки
-   //       setIsFindCards(true)
-   //       setRenderCounter(cardCount)
-   //       setDataLengthMovies(searchMovies.length)
-   //       // Показываю кнопку
-   //       if (searchMovies.length > cardCount) {
-   //          setIsButtonVisible(true)
-   //       }
-   //    }
-   //  },[])
-
+  
    // Обработчик для чекбокса
    const onShortFilmsCheckbox = () => {
       setIsShort(!isShort)

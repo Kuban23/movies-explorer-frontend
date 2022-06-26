@@ -16,12 +16,7 @@ function SavedMovies(props){
 	cardCount={props.cardCount}
 	handleMovieDelete={props.handleMovieDelete}
 	savedMovies={props.savedMovies}
-	/>	
-   {/* <div className="saved-movies__list">
-   <MoviesCard/>
-   <MoviesCard/>
-   <MoviesCard/>
-   </div> */}
+	/>	   
 	<Footer/>
 	</>
 	
