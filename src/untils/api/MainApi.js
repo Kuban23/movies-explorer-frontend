@@ -1,4 +1,5 @@
-const baseUrl = 'https://api.backend.diplom.nomoreparties.sbs';
+// const baseUrl = 'https://api.backend.diplom.nomoreparties.sbs';
+import { baseUrl } from '../constants';
 
 // Метод проверки ответа
 const checkResponse = (res) => {

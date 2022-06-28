@@ -13,6 +13,7 @@ import { register, login, saveMovies, getMovies, editProfile, getUserInformation
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import { CurrentUserContext } from '../../contexts/CurrentUserContext'
 import UnProtectedRoute from '../UnProtectedRoute/UnProtectedRoute'
+import {narrowScreen, largeScreenMoviesMore, narrowScreenMoviesMore} from '../../untils/constants'
 
 function App() {
 
@@ -38,7 +39,7 @@ function App() {
    const [savedMovies, setSavedMovies] = React.useState('')
 
    // Состояние кол-ва карточек
-   const [cardCount, setCardCount] = React.useState(window.innerWidth > 500 ? 7 : 5)
+   const [cardCount, setCardCount] = React.useState(window.innerWidth > narrowScreen ? largeScreenMoviesMore : narrowScreenMoviesMore)
 
    // Переменная для работы с useHistory
    const history = useHistory();
@@ -119,14 +120,14 @@ function App() {
                   }
                })
          })
-         // .catch((error) => {
-         //    if (error.status === 401) {
-         //       setLoginError('Неправильный адрес почты или пароль')
-         //    }
-         //    else {
-         //       setLoginError('Что-то пошло не так. Попробуйте войти позднее.')
-         //    }
-         // })
+         .catch((error) => {
+            if (error.status === 401) {
+               setLoginError('Неправильный адрес почты или пароль')
+            }
+            else {
+               setLoginError('Что-то пошло не так. Попробуйте войти позднее.')
+            }
+         })
    };
 
    // Функция для изменения профайла 
@@ -245,7 +246,7 @@ function App() {
 
   // Юзаю этот юзЭффект если изменится стейт ширины экрана и выставим актуальное количество карточек
   React.useEffect(() => {
-   setCardCount(window.innerWidth > 500 ? 7 : 5)
+   setCardCount(window.innerWidth > narrowScreen ? largeScreenMoviesMore : narrowScreenMoviesMore)
  }, [screenWidth])
 
    return (

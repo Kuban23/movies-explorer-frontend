@@ -16,6 +16,7 @@ function MoviesCardList({
    handleMovieDelete, 
    handleSavedMovie}) {
 
+ 
    const movieDuration = (movie) => `${Math.floor(movie.duration / 60)}ч ${movie.duration % 60}м`
    
   // Загружаю сохраненные фильмы на странице

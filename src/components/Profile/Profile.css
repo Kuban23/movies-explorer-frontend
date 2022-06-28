@@ -141,6 +141,13 @@
    color: #EE3465;
 }
 
+.profile__field-error {
+   color: hsla(344, 85%, 57%, 1);
+   font-size: 13px;
+   line-height: 16px;
+   text-align: center;
+ }
+
 @media (max-width: 770px) {
    .profile {
       padding: 210px 0 269px 0;
@@ -181,4 +188,9 @@
       font-size: 12px;
       line-height: 15px;
    }
+
+   .profile__field-error {
+      font-size: 12px;
+      line-height: 15px;
+    }
 }

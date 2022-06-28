@@ -1,4 +1,6 @@
-const baseUrl = 'https://api.nomoreparties.co/beatfilm-movies';
+// const baseUrl = 'https://api.nomoreparties.co/beatfilm-movies';
+import { beatfilmsUrl } from '../constants';
+
 
 // Метод проверки ответа
 const checkResponse = (res) => {
@@ -10,7 +12,7 @@ const checkResponse = (res) => {
 
 // Запрос фильмов с сервиса beatfilm-movies
 export const getMovies = () => {
-   return fetch(baseUrl, {
+   return fetch(beatfilmsUrl, {
       method: 'GET',
       headers: {
          'Content-Type': 'application/json'

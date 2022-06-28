@@ -14,7 +14,9 @@ function Login(props){
 
 	 const onLoginSumbit = (evt) => {
 		evt.preventDefault()
-		props.handleLogin({ email: values.email, password: values.password })		
+		if (isValid) {
+		props.handleLogin({ email: values.email, password: values.password })	
+		}	
 	 }
 
 	return ( 
@@ -29,7 +31,7 @@ function Login(props){
 	<li className="login__form-input-list-item">
 	<label className="login__form-input-label">E-mail</label>
 	<input className={errors.email ? 'login__form-input login__form-input_type_error' : 'login__form-input'} name="email" type="email" 
-	placeholder="Ваш e-mail" required onChange={handleChange} values={values.email}/>
+	placeholder="Ваш e-mail" required onChange={handleChange} values={values.email} pattern="[^@\s]+@[^@\s]+\.[^@\s]+"/>
 	<span className="login__form-input-error">{errors.email}</span>
 	</li>
 
@@ -37,9 +39,8 @@ function Login(props){
 	<label className="login__form-input-label">Пароль</label>
 	<input className={errors.password ? 'login__form-input login__form-input_type_error' : 'login__form-input'} name="password" 
 	type="password" placeholder="Ваш пароль" minLength="8" maxLength="20" required onChange={handleChange} values={values.password}/>
-	<span className="login__form-input-error">{errors.password}</span>
+	<span className={!isValid ? 'login__form-input-error login__form-input-error_active' : 'login__form-input-error'}>{errors?.email} {errors?.password}</span> 
 	</li>	
-
 	<span className={props.loginError ? 'login__form-input-error login__form-input-error_active' : 'login__form-input-error'}>{props.loginError}</span>
 </ul>
 <button className="login__button" type="submit" aria-label='Кнопка отправить' disabled={!isValid}>Войти</button>

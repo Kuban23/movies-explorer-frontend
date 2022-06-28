@@ -35,12 +35,15 @@ function Profile(props) {
    const handleSubmit = (evt) => {
       setIsDisabledInput(true)
       evt.preventDefault()
+      // ещё раз проверяю валидность
+    if (isValid) {
       // Создал переменные с текущими данными
       const name = refName.current.value
       const email = refEmail.current.value
       // Заданю изменение данных пользователя
       props.handleUpdateUser({ name, email })
       evt.target.reset()
+   }
       setIsDisabledInput(false) // Разблокирую форму
 
    }
@@ -63,13 +66,16 @@ function Profile(props) {
                      <label className="profile__form-input-label">E-mail</label>
                      <input className={errors.profileEmail ? 'profile__form-input profile__form-input_type_error' : 'profile__form-input'}
                         type="email" name="profileEmail" placeholder="Ваш e-mail"
-                        required ref={refEmail} onChange={handleChange} values={refEmail.current.value} defaultValue={currentUser.email} disabled={isDisabledInput} />
+                        required ref={refEmail} onChange={handleChange} values={refEmail.current.value} defaultValue={currentUser.email} disabled={isDisabledInput} 
+                        pattern="[^@\s]+@[^@\s]+\.[^@\s]+" />
                   </li>
                </ul>
                <div className="profile__buttons">
                   {props.updateProfileError && <span className="profile__error">{props.updateProfileError}</span>}
                   {props.isSuccessfulProfileSubmit && <span className="profile__successful">Ваши данные успешно изменены!</span>}
-                  <button className="profile__button" type="submit" aria-label='Кнопка отправить' disabled={!isValid}>Редактировать</button>
+                  {errors.profileName && <span className="profile__field-error">{errors.profileName}</span>}
+                  {errors.profileEmail && <span className="profile__field-error">{errors.profileEmail}</span>}
+                  <button className="profile__button" type="submit" aria-label='Кнопка отправить' disabled={!isValid || !isUpdate}>Редактировать</button>
                   <button className="profile__button profile__button_type_logout" type="button" onClick={props.handleAccountExit}>Выйти из аккаунта</button>
                </div>
             </form>

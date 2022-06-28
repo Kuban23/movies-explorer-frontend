@@ -5,6 +5,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList'
 import formValidationHook from '../../hook/formValidationHook'
 import Preloader from '../Preloader/Preloader'
 import { getMovies } from '../../untils/api/MoviesApi'
+import {shortMovies} from '../../untils/constants'
 
 function SearchForm({ savedMovies, isSaved, cardCount, handleMovieDelete, handleSavedMovie }) {
 
@@ -87,7 +88,7 @@ function SearchForm({ savedMovies, isSaved, cardCount, handleMovieDelete, handle
                   setIsInputDisabled(false)
                   // Сортирую фильмы 
                   const filterFilms = filterItemMovies(movies, values.search)
-                  const shortFilms = filterFilms.filter((movie) => movie.duration <= 40)
+                  const shortFilms = filterFilms.filter((movie) => movie.duration <= shortMovies)
                   // Сохраняю найденные фильмы в localStorage
                   localStorage.setItem('moviesLongFilms', JSON.stringify(filterFilms))
                   localStorage.setItem('moviesShortFilms', JSON.stringify(shortFilms))
@@ -141,7 +142,7 @@ function SearchForm({ savedMovies, isSaved, cardCount, handleMovieDelete, handle
             setIsPreloaderVisual(true)
             // Реализую поиск фильмов по сохраненным фильмам Saved-movies
             const filterSavedMovies = filterItemMovies(savedMovies, values.search)
-            const filterShortSavedFilms = filterSavedMovies.filter((movie) => movie.duration <= 40)
+            const filterShortSavedFilms = filterSavedMovies.filter((movie) => movie.duration <= shortMovies)
             // Сохраняю найденные фильмы в localStorage
             localStorage.setItem('moviesSavedLongFilms', JSON.stringify(filterSavedMovies))
             localStorage.setItem('moviesSavedShortFilms', JSON.stringify(filterShortSavedFilms))
@@ -259,7 +260,7 @@ function SearchForm({ savedMovies, isSaved, cardCount, handleMovieDelete, handle
          setIsFindCards(true)
       } else if (searchMovies?.length > 0) {
          // Если пришли от movies, то надо отобразить фильмы + показывать/не показывать кнопку "Ещё"
-         setMoviesStorage(searchMovies)
+          //setMoviesStorage(searchMovies)
          setfilterArrayFilm(searchMovies)
          setshortArrayFilms(searchShortMovies)
          // включаем секцию с карточками
@@ -306,26 +307,13 @@ function SearchForm({ savedMovies, isSaved, cardCount, handleMovieDelete, handle
                dataLengthMovies={dataLengthMovies}
                isrenderCounter={isrenderCounter}
                setRenderCounter={setRenderCounter}
-               ardCount={cardCount}
+               cardCount={cardCount}
                isButtonVisible={isButtonVisible}
                setIsButtonVisible={setIsButtonVisible}
                handleMovieDelete={handleMovieDelete}
                handleSavedMovie={handleSavedMovie}
                savedMovies={savedMovies}
-            />
-            // <MoviesCardList
-            // savedMovies={savedMovies}
-            // isSaved={isSaved}
-            // cardCount={cardCount}
-            // dataLengthMovies={dataLengthMovies}
-            // movies={moviesStorage}
-            // isrenderCounter={isrenderCounter}
-            // setRenderCounter={setRenderCounter}
-            // isButtonVisible={isButtonVisible}
-            // setIsButtonVisible={setIsButtonVisible}
-            // handleMovieDelete={handleMovieDelete}
-            // handleSavedMovie={handleSavedMovie}         
-            // />
+            />            
          )}
          {isPreloaderVisual && <Preloader />}
          {isNothingFound && <p className="search-form__text-error">Ничего не найдено</p>}
