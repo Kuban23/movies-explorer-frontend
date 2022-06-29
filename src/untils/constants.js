@@ -3,7 +3,7 @@ export const baseUrl = 'https://api.backend.diplom.nomoreparties.sbs';
 export const beatfilmsUrl = 'https://api.nomoreparties.co/beatfilm-movies';
 
 
- export const shortMovies = 40;
+export const shortMovies = 40;
 
 export const narrowScreen = 500;
 

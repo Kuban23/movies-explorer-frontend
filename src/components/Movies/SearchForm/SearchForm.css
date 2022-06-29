@@ -31,7 +31,7 @@
 }
 
 .search-form__btn-submit {
-   background-image: url('../../images/find_btn.svg');
+   background-image: url('../../../images/find_btn.svg');
    width: 34px;
    height: 34px;
    border: none;
@@ -75,14 +75,14 @@
 }
 
 .search-form__checkbox-btn-notvisible:checked+.search-form__checkbox-btn-visible {
-   background: url('../../images/smalltumb.svg');
+   background: url('../../../images/smalltumb.svg');
    margin-right: 14px;
    background-size: cover;
    background-repeat: no-repeat;
 }
 
 .search-form__checkbox-btn-notvisible+.search-form__checkbox-btn-visible {
-   background: url('../../images/off_smalltumb.svg');
+   background: url('../../../images/off_smalltumb.svg');
    margin-right: 14px;
    background-size: cover;
    background-repeat: no-repeat;

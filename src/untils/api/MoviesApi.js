@@ -11,7 +11,7 @@ const checkResponse = (res) => {
 };
 
 // Запрос фильмов с сервиса beatfilm-movies
-export const getMovies = () => {
+export const getSavedMovies = () => {
    return fetch(beatfilmsUrl, {
       method: 'GET',
       headers: {

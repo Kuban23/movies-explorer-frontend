@@ -56,7 +56,7 @@ function MoviesCardList({
             <ul className="movies-card-list__list">
                {renderArrayItem &&
                renderArrayItem.map((movie) => (
-                  <li key= {movie.id}>
+                  <li key= {movie._id}>
                      <MovieCard
                      isSaved={isSaved}
                      movie={movie}

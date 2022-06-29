@@ -9,11 +9,20 @@ import SavedMovies from '../SavedMovies/SavedMovies'
 import Register from '../Register/Register'
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile'
-import { register, login, saveMovies, getMovies, editProfile, getUserInformation, deleteSavedMovies } from '../../untils/api/MainApi';
+import {
+    register,
+    login,
+    saveMovies,
+    editProfile,
+    getUserInformation,
+    deleteSavedMovies,
+    getMovies
+} from '../../untils/api/MainApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import { CurrentUserContext } from '../../contexts/CurrentUserContext'
 import UnProtectedRoute from '../UnProtectedRoute/UnProtectedRoute'
 import {narrowScreen, largeScreenMoviesMore, narrowScreenMoviesMore} from '../../untils/constants'
+import {getSavedMovies} from "../../untils/api/MoviesApi";
 
 function App() {
 
@@ -50,9 +59,18 @@ function App() {
       setScreenWidth(window.innerWidth)  // Записываю сайт в стейт для лальнейшего использования
     }
 
+    const [allMovies, setMovies] = React.useState(null)
 
-   // Сортировка фильмов пользователя
+    // Сортировка фильмов пользователя
    const sortingUserSavedMovies =(savedFilms, userId)=> savedFilms.filter((movie) => movie.owner ===userId);
+
+   const handleGetMovies = () => {
+       if (!allMovies) {
+           getSavedMovies()
+               .then(value => setMovies(value))
+               .catch(reason => console.log(reason))
+       }
+   };
 
    //  Функция регистрации пользователя
    const handleRegister = ({ name, email, password }) => {
@@ -233,6 +251,7 @@ function App() {
     // Получаю данные пользователя при монтировании компонента
   React.useEffect(() => {
    tokenCheck()
+   handleGetMovies()
  }, [])
 
  React.useEffect(() => {
@@ -265,6 +284,7 @@ function App() {
                      component={Movies}
                      loggedIn={loggedIn}
                      savedMovies={savedMovies}
+                     allMovies={allMovies}
                      handleSavedMovie={handleSavedMovie}
                      handleMovieDelete={handleMovieDelete}
                      cardCount={cardCount}
