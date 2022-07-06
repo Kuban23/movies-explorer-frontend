@@ -7,7 +7,7 @@
 Кнопки, инпуты и ссылки реализованы во всех состояниях. 
 
 ## Запуск проекта
-`npm run start` — запускает сервер разработки
+`npm start` — запускает сервер разработки
 `npm run build` — собрать проект
 
 ## Ссылки
@@ -17,7 +17,8 @@ https://www.figma.com/file/5j9NyPc7ihHDwHKIUNA4mG/Diploma-(Copy)?node-id=932%3A3
 -----------------
 51.250.29.106
 
-<!-- ### Проект опубликован 
-[Ссылка на проект]() -->
+### Проект размещен на домене:
+* Backend: https://api.backend.diplom.nomoreparties.sbs
+* Frontend: https://frontend.diplom.nomoreparties.sbs
 
 

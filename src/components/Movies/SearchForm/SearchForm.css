@@ -31,7 +31,7 @@
 }
 
 .search-form__btn-submit {
-   background-image: url('../../images/find_btn.svg');
+   background-image: url('../../../images/find_btn.svg');
    width: 34px;
    height: 34px;
    border: none;
@@ -75,14 +75,14 @@
 }
 
 .search-form__checkbox-btn-notvisible:checked+.search-form__checkbox-btn-visible {
-   background: url('../../images/smalltumb.svg');
+   background: url('../../../images/smalltumb.svg');
    margin-right: 14px;
    background-size: cover;
    background-repeat: no-repeat;
 }
 
 .search-form__checkbox-btn-notvisible+.search-form__checkbox-btn-visible {
-   background: url('../../images/off_smalltumb.svg');
+   background: url('../../../images/off_smalltumb.svg');
    margin-right: 14px;
    background-size: cover;
    background-repeat: no-repeat;
@@ -97,6 +97,34 @@
    color: #FFFFFF;
    margin: 0px;
 }
+
+.search-form__text-error {
+   max-width: 400px;
+   line-height: 18px;
+   font-size: 16px;
+   /* width: 31.25vw; */
+   min-width: 200px;
+   box-sizing: border-box;
+   text-align: center;
+   padding: 0px;
+   margin: 0px;
+ }
+
+ .search-form__input-text-error {
+   font-weight: normal;
+   font-size: 10px;
+   line-height: 12px;
+   padding: 0;
+   margin: 0 0 20px 0;
+   color: #EE3465;
+   align-self: center;
+   visibility: hidden;
+   transition: visibility .8s ease;
+ }
+
+ .search-form__input-text-error_active {
+   visibility: visible;
+ }
 
 @media (max-width: 770px) {
    .search-form {
@@ -114,6 +142,10 @@
 
    .search-form__checkbox-btn-notvisible+.search-form__checkbox-btn-visible {
       margin: 0px 0px 0px 16px;
+   }
+
+   .search-form__input-text-error {
+      margin-bottom: 18px;
    }
 }
 
@@ -135,5 +167,9 @@
    .search-form__checkbox-title {
       font-size: 11px;
       line-height: 18px;      
+   }
+
+   .search-form__input-text-error {
+      margin-bottom: 28px;
    }
 }

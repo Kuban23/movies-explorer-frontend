@@ -1,24 +1,23 @@
-
 import React from "react";
 import './SavedMovies.css'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
-import SearchForm from '../SearchForm/SearchForm';
-import MoviesCard from '../MoviesCard/MoviesCard'
+import SearchForm from "./SearchForm/SearchForm";
 
 function SavedMovies(props){
 	return ( 
-	<section className="saved-movies">
+	// <section className="saved-movies">
+	<>
 	<Header loggedIn={props.loggedIn}/>
-	<SearchForm />	
-   <div className="saved-movies__list">
-   <MoviesCard/>
-   <MoviesCard/>
-   <MoviesCard/>
-   </div>
+	<SearchForm 
+	isSaved
+	cardCount={props.cardCount}
+	handleMovieDelete={props.handleMovieDelete}
+	savedMovies={props.savedMovies}
+	/>	   
 	<Footer/>
-
-	</section>
+	</>
+	
 );
 }
 
